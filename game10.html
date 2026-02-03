@@ -3,23 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Spin the Heart 💖</title>
-  <link rel="stylesheet" href="game10.css">
+  <link rel="stylesheet" href="css/game10.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>Spin the Heart 💖</h1>
+  <!-- Floating hearts -->
+  <div class="heart" style="left:10%; animation-duration:6s;"></div>
+  <div class="heart" style="left:40%; animation-duration:8s;"></div>
+  <div class="heart" style="left:70%; animation-duration:7s;"></div>
 
-<div class="wheel-wrapper">
-  <div class="arrow">▼</div>
+  <div class="container">
+    <h1>Spin the Heart 💖</h1>
 
-  <div id="wheel">
-    <!-- labels inserted by JS -->
+    <div class="wheel-wrapper">
+      <div class="arrow">▼</div>
+      <div id="wheel"></div>
+    </div>
+
+    <button id="spinBtn">SPIN 💖</button>
+    <div id="result"></div>
+
+    <a href="games.html" class="back">← Back to Games</a>
   </div>
-</div>
 
-<button id="spinBtn">SPIN 💖</button>
-<div id="result"></div>
-
-<script src="game10.js"></script>
+  <script src="js/game10.js"></script>
 </body>
 </html>
