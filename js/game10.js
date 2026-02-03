@@ -2,37 +2,44 @@ const dares = [
   "Give me a kiss 😘",
   "Send me a cute selfie 📸",
   "Say something sweet 💕",
-  "Hug me virtually 🤗",
+  "Hug me 🤗",
   "Compliment me 🥰",
-  "Sing a love song 🎵",
+  "Sing a song 🎵",
   "Share a memory 📝",
-  "Dance for 10 sec 💃",
+  "Dance 💃",
   "Draw a heart ❤️",
-  "Tell me your favorite thing 🌹",
-  "Text me a love emoji 💌",
+  "Favorite thing 🌹",
+  "Love emoji 💌",
   "Make a promise 💖"
 ];
 
 const wheel = document.getElementById("wheel");
-const resultDiv = document.getElementById("result");
+const result = document.getElementById("result");
 const spinBtn = document.getElementById("spinBtn");
 
-// Create slices dynamically
+const sliceAngle = 360 / dares.length;
+let currentRotation = 0;
+
+/* Create slices */
 dares.forEach((text, i) => {
   const slice = document.createElement("div");
   slice.className = "slice";
-  slice.style.transform = `rotate(${i*30}deg)`; // 12 slices, 360/12=30deg each
+  slice.style.transform = `rotate(${i * sliceAngle}deg)`;
   slice.textContent = text;
   wheel.appendChild(slice);
 });
 
-// Spin wheel
+/* Spin logic */
 spinBtn.addEventListener("click", () => {
   const randomIndex = Math.floor(Math.random() * dares.length);
-  const degree = 3600 + randomIndex * 30; // multiple spins + slice
-  wheel.style.transform = `rotate(${degree}deg)`;
+
+  const spinDegrees =
+    360 * 5 + (360 - randomIndex * sliceAngle - sliceAngle / 2);
+
+  currentRotation += spinDegrees;
+  wheel.style.transform = `rotate(${currentRotation}deg)`;
 
   setTimeout(() => {
-    resultDiv.textContent = dares[randomIndex];
+    result.textContent = `💖 ${dares[randomIndex]} 💖`;
   }, 4000);
 });
