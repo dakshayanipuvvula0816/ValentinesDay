@@ -64,12 +64,15 @@ h1 {
 /* Arrow */
 .arrow {
   position: absolute;
-  top: -22px;
+  top: -18px;              /* sits just above wheel */
   left: 50%;
   transform: translateX(-50%);
-  font-size: 32px;
+  font-size: 26px;
   color: white;
+  z-index: 5;
+  pointer-events: none;
 }
+
 
 /* Numbers */
 .label {
@@ -99,15 +102,16 @@ h1 {
 
 /* Spin button */
 #spinBtn {
-  margin-top: 20px;
-  padding: 14px 40px;
-  font-size: 24px;
+  margin-top: 18px;
+  padding: 10px 28px;     /* smaller */
+  font-size: 20px;       /* smaller text */
   border: none;
-  border-radius: 30px;
+  border-radius: 25px;
   background: #ff4d6d;
   color: white;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease;
 }
 
 #spinBtn:hover {
@@ -122,13 +126,20 @@ h1 {
   text-shadow: 0 0 10px rgba(255,255,255,0.7);
 }
 
-/* Back link */
 .back {
-  display: block;
-  margin-top: 15px;
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
   color: #ffd6df;
   text-decoration: none;
+  font-size: 20px;
+  z-index: 5;
 }
+
+.back:hover {
+  text-decoration: underline;
+}
+
 
 /* Floating hearts */
 @keyframes float {
