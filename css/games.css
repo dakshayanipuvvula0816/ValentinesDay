@@ -75,7 +75,84 @@ h1 {
 }
 
 /* -----------------------------
-   FLOATING HEARTS
+   BODY - Full-page background & centering
+---------------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  background-image: url('../images/bg1.jpg'); /* your background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: 'Great Vibes', cursive;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; /* hides floating hearts overflow */
+}
+
+/* Optional dark overlay for better readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3); /* adjust opacity */
+  z-index: 0; 
+}
+
+/* -----------------------------
+   CONTAINER - content wrapper
+---------------------------------*/
+.container {
+  text-align: center;
+  position: relative;
+  z-index: 1;  /* above overlay and hearts */
+}
+
+/* -----------------------------
+   TITLE - Main heading
+---------------------------------*/
+h1 {
+  font-size: 64px;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+/* -----------------------------
+   CONTINUE BUTTON - bottom-right
+---------------------------------*/
+.continue-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 40px;
+  font-size: 22px;
+  border: none;
+  border-radius: 30px;
+  background-color: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.continue-btn:hover {
+  background-color: #d6336c;
+  transform: scale(1.05);
+}
+
+/* -----------------------------
+   FLOATING HEARTS ANIMATION
 ---------------------------------*/
 @keyframes floatHearts {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
@@ -87,4 +164,48 @@ h1 {
   width: 20px;
   height: 20px;
   background-color: #ff4d6d;
-  tran
+  transform: rotate(45deg);
+  bottom: -50px;
+  border-radius: 0;
+  animation: floatHearts linear infinite;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
+}
+
+/* -----------------------------
+   MOBILE RESPONSIVENESS
+---------------------------------*/
+@media (max-width: 600px) {
+  h1 {
+    font-size: 42px;
+  }
+
+  .continue-btn {
+    font-size: 18px;
+    padding: 12px 30px;
+  }
+
+  .heart, .heart::before, .heart::after {
+    width: 15px;
+    height: 15px;
+  }
+}
