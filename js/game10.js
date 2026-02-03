@@ -29,6 +29,6 @@ document.getElementById("spinBtn").addEventListener("click", () => {
     const slice = Math.floor((360 - degrees) / 30) % 12;
 
     const number = slice + 1;
-    result.innerHTML = `Number ${number} → ❤️ ${actions[slice]}`;
+    result.innerHTML = `❤️ ${actions[slice]}`;
   }, 4000);
 });
