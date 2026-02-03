@@ -1,29 +1,49 @@
+/* -----------------------------
+   BODY - Page background & centering
+---------------------------------*/
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #ffdee9, #b5fffc);
   font-family: 'Great Vibes', cursive;
+
+  display: flex;               /* flex centering */
+  justify-content: center;     /* horizontal center */
+  align-items: center;         /* vertical center */
 }
 
+/* -----------------------------
+   CONTAINER - content wrapper
+---------------------------------*/
 .container {
   text-align: center;
-  padding: 40px 20px;
 }
 
+/* -----------------------------
+   TITLE - Main heading
+---------------------------------*/
 h1 {
-  font-size: 48px;
+  font-size: 64px;             /* big romantic size */
   color: #d6336c;
-  margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
+/* -----------------------------
+   IMAGE CONTAINER & OVERLAY TEXT
+---------------------------------*/
 .image-container {
   position: relative;
   display: inline-block;
+  margin-top: 10px;
 }
 
 .image-container img {
-  width: 300px;
+  width: 320px;                /* adjust as needed */
+  max-width: 90%;              /* responsive on mobile */
   border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .image-text {
@@ -33,22 +53,44 @@ h1 {
   transform: translate(-50%, -50%);
   color: white;
   font-size: 36px;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
 }
 
+/* -----------------------------
+   CONTINUE BUTTON
+---------------------------------*/
 .continue-btn {
   margin-top: 40px;
-  padding: 12px 30px;
-  font-size: 20px;
+  padding: 14px 40px;
+  font-size: 22px;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   background-color: #ff4d6d;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .continue-btn:hover {
   background-color: #d6336c;
+  transform: scale(1.05);
 }
 
+/* -----------------------------
+   MOBILE RESPONSIVENESS
+---------------------------------*/
+@media (max-width: 600px) {
+  h1 {
+    font-size: 42px;           /* smaller on phones */
+  }
+
+  .image-text {
+    font-size: 28px;           /* smaller overlay text */
+  }
+
+  .continue-btn {
+    font-size: 18px;
+    padding: 12px 30px;
+  }
+}
