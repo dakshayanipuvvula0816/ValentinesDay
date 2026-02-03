@@ -48,18 +48,20 @@ h1 {
 }
 
 .option {
-  padding: 12px;
-  font-size: 20px;
-  border-radius: 20px;
+  padding: 14px;
+  font-size: 26px;
+  font-family: 'Great Vibes', cursive;
+  border-radius: 30px;
   border: none;
   background: #ff4d6d;
   color: white;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .option:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
 }
 
 #submitBtn {
