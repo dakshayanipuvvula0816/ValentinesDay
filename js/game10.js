@@ -4,11 +4,11 @@ const actions = [
   "Sweet words 💕",
   "Hug 🤗",
   "Compliment 🥰",
-  "Sing a song 🎵",
+  "Sing 🎵",
   "Memory 📝",
   "Dance 💃",
   "Draw ❤️",
-  "Favorite thing 🌹",
+  "Favorite 🌹",
   "Emoji 💌",
   "Promise 💖"
 ];
@@ -20,22 +20,22 @@ const result = document.getElementById("result");
 const angle = 360 / actions.length;
 let rotation = 0;
 
-/* Place labels */
+/* Create text inside each slice */
 actions.forEach((text, i) => {
-  const label = document.createElement("div");
-  label.className = "label";
-  label.textContent = text;
+  const el = document.createElement("div");
+  el.className = "slice-text";
+  el.textContent = text;
 
-  label.style.transform =
-    `rotate(${i * angle}deg) translate(120px) rotate(90deg)`;
+  el.style.transform =
+    `rotate(${i * angle + angle / 2}deg) translate(110px) rotate(90deg)`;
 
-  wheel.appendChild(label);
+  wheel.appendChild(el);
 });
 
-/* Spin logic */
+/* Spin */
 spinBtn.addEventListener("click", () => {
   const index = Math.floor(Math.random() * actions.length);
-  const spin = 360 * 5 + (360 - index * angle);
+  const spin = 360 * 5 + (360 - index * angle - angle / 2);
 
   rotation += spin;
   wheel.style.transform = `rotate(${rotation}deg)`;
