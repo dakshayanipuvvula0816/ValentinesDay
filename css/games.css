@@ -1,3 +1,6 @@
+/* -----------------------------
+   BODY - Page background & centering
+---------------------------------*/
 body {
   margin: 0;
   padding: 0;
@@ -38,37 +41,42 @@ h1 {
   text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
 }
 
-/* Grid of tiles - big squares */
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 per row */
-  gap: 30px;
-  max-width: 1500px;
+/* -----------------------------
+   BIG SQUARES
+---------------------------------*/
+.squares {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
-.tile {
+.square {
   background-color: #ff4d6d;
   color: white;
-  padding: 0; /* we will use fixed height for square */
-  font-size: 24px;
-  border-radius: 25px;
-  text-decoration: none;
+  font-size: 28px;
+  width: 250px;   /* big square */
+  height: 250px;  /* big square */
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1 / 1; /* makes tile square */
+  border-radius: 25px;
+  text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-.tile:hover {
+.square:hover {
   background-color: #d6336c;
-  transform: scale(1.08);
+  transform: scale(1.1);
   box-shadow: 0 12px 30px rgba(0,0,0,0.4);
 }
 
-/* Floating hearts */
+/* -----------------------------
+   FLOATING HEARTS
+---------------------------------*/
 @keyframes floatHearts {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
@@ -79,37 +87,4 @@ h1 {
   width: 20px;
   height: 20px;
   background-color: #ff4d6d;
-  transform: rotate(45deg);
-  bottom: -50px;
-  border-radius: 0;
-  animation: floatHearts linear infinite;
-  z-index: 0;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px; height: 20px;
-  background-color: #ff4d6d;
-  border-radius: 50%;
-}
-
-.heart::before { top: -10px; left: 0; }
-.heart::after { left: 10px; top: 0; }
-
-/* Mobile responsiveness */
-@media (max-width: 1200px) {
-  .tiles { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .tiles { grid-template-columns: repeat(2, 1fr); }
-  .tile { font-size: 22px; }
-}
-
-@media (max-width: 480px) {
-  .tiles { grid-template-columns: 1fr; }
-  .tile { font-size: 20px; }
-  h1 { font-size: 42px; }
-}
+  tran
