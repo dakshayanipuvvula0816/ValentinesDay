@@ -4,29 +4,25 @@
   <meta charset="UTF-8" />
   <title>Spin the Heart 💖</title>
   <link rel="stylesheet" href="css/game10.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <!-- Floating hearts -->
-  <div class="heart" style="left:5%; animation-duration:6s;"></div>
-  <div class="heart" style="left:15%; animation-duration:8s;"></div>
-  <div class="heart" style="left:30%; animation-duration:7s;"></div>
-  <div class="heart" style="left:45%; animation-duration:9s;"></div>
-  <div class="heart" style="left:60%; animation-duration:6.5s;"></div>
-  <div class="heart" style="left:75%; animation-duration:8.5s;"></div>
-  <div class="heart" style="left:85%; animation-duration:7.5s;"></div>
+  <div class="heart" style="left:10%; animation-duration:6s;"></div>
+  <div class="heart" style="left:30%; animation-duration:8s;"></div>
+  <div class="heart" style="left:60%; animation-duration:7s;"></div>
+  <div class="heart" style="left:80%; animation-duration:9s;"></div>
 
   <div class="container">
     <h1>Spin the Heart 💖</h1>
 
-    <div class="arrow">⬇️</div>
-
-    <div id="wheel" class="wheel">
-      <!-- 12 slices created by JS -->
+    <div class="wheel-container">
+      <div class="arrow">▼</div>
+      <div id="wheel"></div>
     </div>
 
     <button id="spinBtn">SPIN 💖</button>
-
     <div id="result"></div>
   </div>
 
