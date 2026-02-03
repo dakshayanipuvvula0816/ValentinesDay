@@ -1,49 +1,35 @@
-const dares = [
-  "Give me a kiss 😘",
-  "Send me a cute selfie 📸",
-  "Say something sweet 💕",
-  "Hug me 🤗",
-  "Compliment me 🥰",
-  "Sing a song 🎵",
-  "Share a memory 📝",
-  "Dance 💃",
-  "Draw a heart ❤️",
-  "Favorite thing 🌹",
-  "Love emoji 💌",
-  "Make a promise 💖"
+const items = [
+  "Kiss 😘", "Selfie 📸", "Sweet words 💕", "Hug 🤗",
+  "Compliment 🥰", "Song 🎵", "Memory 📝", "Dance 💃",
+  "Draw ❤️", "Favorite 🌹", "Emoji 💌", "Promise 💖"
 ];
 
 const wheel = document.getElementById("wheel");
-const result = document.getElementById("result");
 const spinBtn = document.getElementById("spinBtn");
+const result = document.getElementById("result");
 
-const sliceAngle = 360 / dares.length;
-let currentRotation = 0;
+const angle = 360 / items.length;
+let rotation = 0;
 
-/* Create slices */
-dares.forEach((text, i) => {
-  const slice = document.createElement("div");
-  slice.className = "slice";
-  slice.style.transform = `rotate(${i * sliceAngle}deg)`;
-
-  const label = document.createElement("span");
+/* Place text around circle */
+items.forEach((text, i) => {
+  const label = document.createElement("div");
   label.className = "label";
+  label.style.transform =
+    `rotate(${i * angle}deg) translate(130px) rotate(${90}deg)`;
   label.textContent = text;
-
-  slice.appendChild(label);
-  wheel.appendChild(slice);
+  wheel.appendChild(label);
 });
 
 /* Spin */
-spinBtn.addEventListener("click", () => {
-  const index = Math.floor(Math.random() * dares.length);
-  const spin =
-    360 * 5 + (360 - index * sliceAngle - sliceAngle / 2);
+spinBtn.onclick = () => {
+  const index = Math.floor(Math.random() * items.length);
+  const spin = 360 * 5 + (360 - index * angle);
 
-  currentRotation += spin;
-  wheel.style.transform = `rotate(${currentRotation}deg)`;
+  rotation += spin;
+  wheel.style.transform = `rotate(${rotation}deg)`;
 
   setTimeout(() => {
-    result.textContent = dares[index];
+    result.textContent = "💖 " + items[index];
   }, 4000);
-});
+};
