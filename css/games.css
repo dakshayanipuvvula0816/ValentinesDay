@@ -42,12 +42,11 @@ h1 {
 }
 
 /* -----------------------------
-   BIG SQUARES
+   BIG SQUARES - 5 per row
 ---------------------------------*/
 .squares {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 squares per row */
   gap: 40px;
   max-width: 1800px;
   margin: 0 auto;
@@ -57,8 +56,8 @@ h1 {
   background-color: #ff4d6d;
   color: white;
   font-size: 28px;
-  width: 200px;   /* big square */
-  height: 200px;  /* big square */
+  width: 100%;          /* grid will control width */
+  aspect-ratio: 1 / 1;  /* keeps square shape */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,44 +69,26 @@ h1 {
 
 .square:hover {
   background-color: #d6336c;
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0 12px 30px rgba(0,0,0,0.4);
 }
 
 /* -----------------------------
-   BODY - Full-page background & centering
+   RESPONSIVE DESIGN
 ---------------------------------*/
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-
-  background-image: url('../images/bg1.jpg'); /* your background */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  font-family: 'Great Vibes', cursive;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden; /* hides floating hearts overflow */
+@media (max-width: 1200px) {
+  .squares { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Optional dark overlay for better readability */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.3); /* adjust opacity */
-  z-index: 0; 
+@media (max-width: 768px) {
+  .squares { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 480px) {
+  .squares { grid-template-columns: 1fr; }
+  h1 { font-size: 42px; }
+}
+
 
 /* -----------------------------
    CONTAINER - content wrapper
