@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Spin the Heart 💖</title>
-  <link rel="stylesheet" href="css/game10.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/game10.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 </head>
 <body>
-
   <!-- Floating hearts -->
   <div class="heart" style="left:5%; animation-duration:6s;"></div>
   <div class="heart" style="left:15%; animation-duration:8s;"></div>
@@ -20,12 +19,14 @@
   <div class="container">
     <h1>Spin the Heart 💖</h1>
 
-    <div class="wheel-container">
-      <div id="wheel"></div>
-      <div class="arrow">⬇️</div>
+    <div class="arrow">⬇️</div>
+
+    <div id="wheel" class="wheel">
+      <!-- 12 slices created by JS -->
     </div>
 
     <button id="spinBtn">SPIN 💖</button>
+
     <div id="result"></div>
   </div>
 
