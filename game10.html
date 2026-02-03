@@ -1,165 +1,47 @@
-/* -----------------------------
-   BODY + BACKGROUND
------------------------------ */
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #8e044f, #c2185b);
-  font-family: 'Great Vibes', cursive;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  color: white;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spin the Heart 💖</title>
+  <link rel="stylesheet" href="css/game10.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
 
-/* Dark overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
-  z-index: 0;
-}
+  <!-- Floating hearts -->
+  <div class="heart" style="left:15%; animation-duration:6s;"></div>
+  <div class="heart" style="left:50%; animation-duration:8s;"></div>
+  <div class="heart" style="left:80%; animation-duration:7s;"></div>
 
-/* -----------------------------
-   FLOATING HEARTS
------------------------------ */
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-900px) rotate(360deg); opacity: 0; }
-}
+  <div class="container">
+    <h1>Spin the Heart 💖</h1>
 
-.heart {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #ff4d6d;
-  bottom: -40px;
-  transform: rotate(45deg);
-  animation: float linear infinite;
-  z-index: 1;
-}
+    <div class="wheel-wrapper">
+      <div class="arrow">▼</div>
 
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #ff4d6d;
-  border-radius: 50%;
-}
+      <div id="wheel">
+        <span class="label l1">1</span>
+        <span class="label l2">2</span>
+        <span class="label l3">3</span>
+        <span class="label l4">4</span>
+        <span class="label l5">5</span>
+        <span class="label l6">6</span>
+        <span class="label l7">7</span>
+        <span class="label l8">8</span>
+        <span class="label l9">9</span>
+        <span class="label l10">10</span>
+        <span class="label l11">11</span>
+        <span class="label l12">12</span>
+      </div>
+    </div>
 
-.heart::before { top: -9px; left: 0; }
-.heart::after { left: 9px; top: 0; }
+    <button id="spinBtn">SPIN 💖</button>
 
-/* -----------------------------
-   CONTAINER
------------------------------ */
-.container {
-  text-align: center;
-  z-index: 2;
-}
+    <div id="result">Spin to see 💫</div>
 
-h1 {
-  font-size: 60px;
-  margin-bottom: 25px;
-  text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
-}
+    <a href="games.html" class="back">← Back to Games</a>
+  </div>
 
-/* -----------------------------
-   WHEEL
------------------------------ */
-.wheel-wrapper {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  margin: 0 auto 30px;
-}
-
-#wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: conic-gradient(
-    #ff5c8a 0deg 30deg,
-    #ff87ab 30deg 60deg,
-    #ff5c8a 60deg 90deg,
-    #ff87ab 90deg 120deg,
-    #ff5c8a 120deg 150deg,
-    #ff87ab 150deg 180deg,
-    #ff5c8a 180deg 210deg,
-    #ff87ab 210deg 240deg,
-    #ff5c8a 240deg 270deg,
-    #ff87ab 270deg 300deg,
-    #ff5c8a 300deg 330deg,
-    #ff87ab 330deg 360deg
-  );
-  box-shadow: 0 0 25px rgba(255, 90, 130, 0.7);
-  position: relative;
-  transition: transform 4s cubic-bezier(0.17, 0.67, 0.35, 1);
-}
-
-/* Numbers */
-#wheel::after {
-  content: "1 2 3 4 5 6 7 8 9 10 11 12";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: transparent;
-}
-
-/* Arrow */
-.arrow {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 32px;
-  z-index: 3;
-}
-
-/* -----------------------------
-   BUTTON
------------------------------ */
-#spinBtn {
-  padding: 14px 50px;
-  font-size: 26px;
-  border: none;
-  border-radius: 40px;
-  background: #ff4d6d;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: 0.3s;
-}
-
-#spinBtn:hover {
-  background: #d6336c;
-  transform: scale(1.05);
-}
-
-/* -----------------------------
-   RESULT
------------------------------ */
-#result {
-  margin-top: 25px;
-  font-size: 32px;
-  min-height: 40px;
-  text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
-}
-
-/* -----------------------------
-   BACK LINK
------------------------------ */
-.back {
-  display: block;
-  margin-top: 20px;
-  font-size: 22px;
-  color: #ffd6e0;
-  text-decoration: none;
-}
+  <script src="js/game10.js"></script>
+</body>
+</html>
