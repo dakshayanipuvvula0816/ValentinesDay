@@ -65,20 +65,20 @@ h1 {
 
 .slice {
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 50%;
   height: 50%;
+  top: 50%;
+  left: 50%;
   transform-origin: 0% 0%;
-  background-color: rgba(255, 77, 109, 0.6);
-  text-align: right;
-  padding-right: 10px;
-  box-sizing: border-box;
+  background-color: rgba(255,77,109,0.6);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+  font-size: 12px;
   color: white;
   font-weight: bold;
-  font-size: 14px;
-  clip-path: polygon(0 0, 100% 0, 0 100%);
-  transform: rotate(calc(var(--i) * 30deg));
 }
 
 /* -----------------------------
@@ -92,6 +92,27 @@ h1 {
   font-size: 40px;
   z-index: 2;
   pointer-events: none;
+}
+
+/* -----------------------------
+   SPIN BUTTON
+---------------------------------*/
+#spinBtn {
+  margin-top: 20px;
+  padding: 14px 40px;
+  font-size: 22px;
+  border: none;
+  border-radius: 30px;
+  background-color: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+#spinBtn:hover {
+  background-color: #d6336c;
+  transform: scale(1.05);
 }
 
 /* -----------------------------
@@ -144,4 +165,5 @@ h1 {
   h1 { font-size: 42px; }
   .wheel-container { width: 300px; height: 300px; }
   .slice { font-size: 10px; }
+  #spinBtn { font-size: 18px; padding: 12px 30px; }
 }
