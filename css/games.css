@@ -63,8 +63,8 @@ h1 {
   background-color: #ff4d6d;
   color: white;
   font-size: 28px;
-  width: 250px;       /* big fixed width */
-  height: 250px;      /* big fixed height */
+  width: 200px;       /* big fixed width */
+  height: 200px;      /* big fixed height */
   display: flex;
   justify-content: center;
   align-items: center;
