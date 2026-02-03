@@ -25,21 +25,25 @@ dares.forEach((text, i) => {
   const slice = document.createElement("div");
   slice.className = "slice";
   slice.style.transform = `rotate(${i * sliceAngle}deg)`;
-  slice.textContent = text;
+
+  const label = document.createElement("span");
+  label.className = "label";
+  label.textContent = text;
+
+  slice.appendChild(label);
   wheel.appendChild(slice);
 });
 
-/* Spin logic */
+/* Spin */
 spinBtn.addEventListener("click", () => {
-  const randomIndex = Math.floor(Math.random() * dares.length);
+  const index = Math.floor(Math.random() * dares.length);
+  const spin =
+    360 * 5 + (360 - index * sliceAngle - sliceAngle / 2);
 
-  const spinDegrees =
-    360 * 5 + (360 - randomIndex * sliceAngle - sliceAngle / 2);
-
-  currentRotation += spinDegrees;
+  currentRotation += spin;
   wheel.style.transform = `rotate(${currentRotation}deg)`;
 
   setTimeout(() => {
-    result.textContent = `💖 ${dares[randomIndex]} 💖`;
+    result.textContent = dares[index];
   }, 4000);
 });
