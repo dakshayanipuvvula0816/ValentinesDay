@@ -1,45 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Spin the Heart 💖</title>
-  <link rel="stylesheet" href="css/game10.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-</head>
-<body>
+/* -----------------------------
+   BODY
+---------------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url('../images/bg1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Great Vibes', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
 
-  <!-- Floating hearts -->
-  <div class="heart" style="left:5%; animation-duration:6s;"></div>
-  <div class="heart" style="left:15%; animation-duration:8s;"></div>
-  <div class="heart" style="left:30%; animation-duration:7s;"></div>
-  <div class="heart" style="left:45%; animation-duration:9s;"></div>
-  <div class="heart" style="left:60%; animation-duration:6.5s;"></div>
-  <div class="heart" style="left:75%; animation-duration:8.5s;"></div>
-  <div class="heart" style="left:85%; animation-duration:7.5s;"></div>
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 0;
+}
 
-  <div class="container">
-    <h1>Spin the Heart 💖</h1>
-    <div class="wheel-container">
-      <div id="wheel">
-        <!-- 12 slices -->
-        <div class="slice" style="--i:0">Give me a kiss 😘</div>
-        <div class="slice" style="--i:1">Send me a cute selfie 📸</div>
-        <div class="slice" style="--i:2">Say something sweet 💕</div>
-        <div class="slice" style="--i:3">Hug me virtually 🤗</div>
-        <div class="slice" style="--i:4">Compliment me 🥰</div>
-        <div class="slice" style="--i:5">Sing a love song 🎵</div>
-        <div class="slice" style="--i:6">Share a memory 📝</div>
-        <div class="slice" style="--i:7">Dance for 10 sec 💃</div>
-        <div class="slice" style="--i:8">Draw a heart ❤️</div>
-        <div class="slice" style="--i:9">Tell me your favorite thing 🌹</div>
-        <div class="slice" style="--i:10">Text me a love emoji 💌</div>
-        <div class="slice" style="--i:11">Make a promise 💖</div>
-      </div>
-      <div class="arrow">⬇️</div>
-    </div>
-    <div id="result"></div>
-  </div>
+/* -----------------------------
+   CONTAINER
+---------------------------------*/
+.container {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: white;
+}
 
-  <script src="js/game10.js"></script>
-</body>
-</html>
+h1 {
+  font-size: 60px;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+/* -----------------------------
+   WHEEL
+---------------------------------*/
+.wheel-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto 30px;
+}
+
+#wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid #ff4d6d;
+  overflow: hidden;
+  transform: rotate(0deg);
+  transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.slice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 0%;
+  background-color: rgba(255, 77, 109, 0.6);
+  text-align: right;
+  padding-right: 10px;
+  box-sizing: border-box;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  transform: rotate(calc(var(--i) * 30deg));
+}
+
+/* -----------------------------
+   ARROW
+---------------------------------*/
+.arrow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* -----------------------------
+   RESULT
+---------------------------------*/
+#result {
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+/* -----------------------------
+   FLOATING HEARTS
+---------------------------------*/
+@keyframes floatHearts {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  transform: rotate(45deg);
+  bottom: -50px;
+  border-radius: 0;
+  animation: floatHearts linear infinite;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
+/* -----------------------------
+   RESPONSIVE
+---------------------------------*/
+@media (max-width: 600px) {
+  h1 { font-size: 42px; }
+  .wheel-container { width: 300px; height: 300px; }
+  .slice { font-size: 10px; }
+}
