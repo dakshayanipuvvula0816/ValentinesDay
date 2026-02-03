@@ -1,6 +1,3 @@
-const wheel = document.getElementById("wheel");
-const resultDiv = document.getElementById("result");
-
 const dares = [
   "Give me a kiss 😘",
   "Send me a cute selfie 📸",
@@ -16,12 +13,26 @@ const dares = [
   "Make a promise 💖"
 ];
 
-wheel.addEventListener("click", () => {
+const wheel = document.getElementById("wheel");
+const resultDiv = document.getElementById("result");
+const spinBtn = document.getElementById("spinBtn");
+
+// Create slices dynamically
+dares.forEach((text, i) => {
+  const slice = document.createElement("div");
+  slice.className = "slice";
+  slice.style.transform = `rotate(${i*30}deg)`; // 12 slices, 360/12=30deg each
+  slice.textContent = text;
+  wheel.appendChild(slice);
+});
+
+// Spin wheel
+spinBtn.addEventListener("click", () => {
   const randomIndex = Math.floor(Math.random() * dares.length);
-  const degree = 3600 + randomIndex * 30; // 30 deg per slice, plus multiple spins
+  const degree = 3600 + randomIndex * 30; // multiple spins + slice
   wheel.style.transform = `rotate(${degree}deg)`;
 
   setTimeout(() => {
     resultDiv.textContent = dares[randomIndex];
-  }, 4000); // show result after spin
+  }, 4000);
 });
