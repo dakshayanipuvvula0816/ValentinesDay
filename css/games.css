@@ -3,7 +3,7 @@ body {
   padding: 0;
   min-height: 100vh;
 
-  background-image: url('images/bg1.jpg'); /* same as first page */
+  background-image: url('../images/bg1.jpg'); /* same as first page */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
