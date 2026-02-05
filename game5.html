@@ -2,35 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Love Puzzle 💖</title>
-  <link rel="stylesheet" href="css/game5.css">
+  <title>Find Our Love Words 💖</title>
+  <link rel="stylesheet" href="css/gameX.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Floating Hearts -->
-<div class="heart" style="left:10%; animation-duration:6s;"></div>
-<div class="heart" style="left:30%; animation-duration:9s;"></div>
-<div class="heart" style="left:60%; animation-duration:7s;"></div>
-<div class="heart" style="left:80%; animation-duration:8s;"></div>
+<!-- Floating hearts -->
+<div class="heart" style="left:5%;animation-duration:7s"></div>
+<div class="heart" style="left:20%;animation-duration:9s"></div>
+<div class="heart" style="left:40%;animation-duration:8s"></div>
+<div class="heart" style="left:60%;animation-duration:10s"></div>
+<div class="heart" style="left:80%;animation-duration:6s"></div>
 
-<h1>Find Our Love Words 💕</h1>
+<div class="container">
+  <h1>Find Our Love Words 💕</h1>
 
-<div class="game-container">
+  <div class="game-area">
+    <div id="grid" class="grid"></div>
 
-  <!-- Puzzle Grid -->
-  <div id="grid" class="grid"></div>
-
-  <!-- Words -->
-  <div class="words">
-    <h2>Words 💖</h2>
-    <ul id="wordList"></ul>
+    <div class="words-box">
+      <h2>Words ✨</h2>
+      <ul id="wordList" class="words"></ul>
+    </div>
   </div>
 
+  <a href="games.html" class="back">← Back to Games</a>
 </div>
 
-<a href="games.html" class="back">← Back to Games</a>
-
-<script src="js/game5.js"></script>
+<script src="js/gameX.js"></script>
 </body>
 </html>
