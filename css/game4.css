@@ -1,130 +1,112 @@
 body {
-  margin: 0;
-  font-family: 'Great Vibes', cursive;
-  background: url("../images/bg1.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: radial-gradient(circle at top, #5a003c, #2b001e);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  overflow: hidden;
-}
-
-.container {
-  width: 90%;
-  max-width: 1100px;
   text-align: center;
-  z-index: 2;
+  color: white;
+  font-family: 'Great Vibes', cursive;
+  overflow-x: hidden;
 }
 
 h1 {
-  font-size: 3rem;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  font-size: 3.2rem;
+  margin: 20px 0;
 }
 
-.game-area {
+.game-container {
   display: flex;
-  justify-content: space-between;
-  gap: 40px;
+  justify-content: center;
+  gap: 70px;
+  margin-top: 40px;
 }
 
-.box {
-  width: 45%;
-  background: rgba(255,255,255,0.2);
-  border-radius: 25px;
-  padding: 20px;
-  backdrop-filter: blur(8px);
+.column {
+  width: 320px;
 }
 
-.box h2 {
-  font-size: 2rem;
+h2 {
+  font-size: 2.2rem;
   margin-bottom: 15px;
 }
 
-#items, #slots {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.box {
+  min-height: 420px;
+  padding: 15px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .item {
-  background: #ff4d6d;
-  padding: 12px;
-  border-radius: 20px;
-  font-size: 1.6rem;
+  background: #ff5a7a;
+  padding: 14px 18px;
+  border-radius: 30px;
+  margin: 10px 0;
   cursor: grab;
+  font-size: 1.3rem;
+  transition: transform 0.2s;
+}
+
+.item:active {
+  transform: scale(1.05);
 }
 
 .slot {
-  min-height: 45px;
-  padding: 12px;
-  border-radius: 20px;
-  border: 2px dashed rgba(255,255,255,0.7);
-  font-size: 1.6rem;
-}
-
-.slot.filled {
-  border-style: solid;
-  background: rgba(255,255,255,0.25);
+  border: 2px dashed rgba(255,255,255,0.5);
+  border-radius: 30px;
+  min-height: 48px;
+  margin: 10px 0;
 }
 
 button {
-  margin-top: 25px;
+  margin-top: 30px;
   padding: 12px 35px;
-  font-size: 1.6rem;
   border-radius: 30px;
   border: none;
   background: #ff4d6d;
   color: white;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
-button:hover {
-  background: #d6336c;
-}
-
 #message {
-  margin-top: 15px;
-  font-size: 1.4rem;
+  margin-top: 18px;
+  font-size: 1.7rem;
 }
 
 .back {
-  display: block;
-  margin-top: 20px;
-  color: #ffd6e8;
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  color: white;
+  font-size: 1.3rem;
   text-decoration: none;
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .heart {
   position: fixed;
-  bottom: -30px;
-  width: 18px;
-  height: 18px;
-  background: #ff4d6d;
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  background: pink;
   transform: rotate(45deg);
-  animation: floatUp linear infinite;
-  opacity: 0.7;
+  animation: float 8s infinite ease-in;
+  opacity: 0.5;
 }
 
 .heart::before,
 .heart::after {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #ff4d6d;
+  width: 20px;
+  height: 20px;
+  background: pink;
   border-radius: 50%;
 }
 
-.heart::before { top: -9px; left: 0; }
-.heart::after { left: -9px; top: 0; }
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
 
-@keyframes floatUp {
-  to {
-    transform: translateY(-110vh) rotate(45deg);
-    opacity: 0;
-  }
+@keyframes float {
+  0% { transform: translateY(0) rotate(45deg); }
+  100% { transform: translateY(-110vh) rotate(45deg); }
 }
