@@ -1,117 +1,120 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("../images/bg1.jpg") no-repeat center/cover;
+  background: url("../images/bg1.jpg") center/cover no-repeat;
   font-family: 'Great Vibes', cursive;
   color: white;
-  text-align: center;
   overflow-x: hidden;
 }
 
-h1 {
-  margin-top: 30px;
-  font-size: 48px;
-  text-shadow: 0 0 10px pink;
+.container {
+  text-align: center;
+  padding: 40px;
 }
 
-.game-container {
+h1 {
+  font-size: 58px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+}
+
+.game-area {
   display: flex;
   justify-content: center;
   gap: 60px;
-  margin-top: 40px;
+  align-items: flex-start;
 }
 
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, 40px);
-  gap: 6px;
+  grid-template-columns: repeat(14, 42px);
+  gap: 8px;
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 105, 135, 0.8);
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
+  width: 42px;
+  height: 42px;
+  background: rgba(255,105,135,0.85);
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 42px;
   cursor: pointer;
   user-select: none;
+  transition: all 0.2s ease;
 }
 
 .cell.selected {
-  background: #ff3366;
+  background: rgba(255,215,170,0.95);
+  color: #6b1436;
 }
 
 .cell.found {
-  background: #6affb7;
-  color: black;
+  background: linear-gradient(135deg,#ffb6c1,#ffd6e8);
+  color: #6b1436;
+  font-weight: bold;
 }
 
-.words {
+/* WORD LIST */
+.words-box {
   background: rgba(255,255,255,0.15);
-  padding: 20px 30px;
+  padding: 25px 40px;
   border-radius: 20px;
+  min-width: 220px;
 }
 
-.words h2 {
+.words-box h2 {
+  font-size: 36px;
   margin-bottom: 15px;
 }
 
 .words li {
   list-style: none;
   font-size: 22px;
-  margin: 8px 0;
-  opacity: 0.5;
+  margin: 6px 0;
+  transition: 0.3s;
 }
 
-.words li.found {
+.words li.done {
   text-decoration: line-through;
-  opacity: 1;
+  opacity: 0.6;
 }
 
+/* BACK */
 .back {
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  color: pink;
-  font-size: 20px;
+  display: inline-block;
+  margin-top: 30px;
+  font-size: 22px;
+  color: #ffd6e8;
   text-decoration: none;
 }
 
-/* Floating hearts */
+/* FLOATING HEARTS */
+@keyframes floatHearts {
+  0% {transform: translateY(0) rotate(0deg); opacity:1;}
+  100% {transform: translateY(-900px) rotate(360deg); opacity:0;}
+}
+
 .heart {
-  position: fixed;
-  bottom: -50px;
+  position: absolute;
+  bottom: -40px;
   width: 20px;
   height: 20px;
-  background: pink;
+  background: #ff4d6d;
   transform: rotate(45deg);
-  animation: float 8s infinite ease-in;
+  animation: floatHearts linear infinite;
 }
 
 .heart::before,
 .heart::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 20px;
   height: 20px;
-  background: pink;
+  background: #ff4d6d;
   border-radius: 50%;
 }
 
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-
-.heart::after {
-  left: -10px;
-  top: 0;
-}
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
-  100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
-}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
