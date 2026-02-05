@@ -2,44 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Put Our Love in Order 💖</title>
+  <title>Put Our Love in Order 💕</title>
   <link rel="stylesheet" href="css/game4.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Floating hearts -->
-<div class="heart" style="left:5%; animation-duration:6s;"></div>
-<div class="heart" style="left:15%; animation-duration:8s;"></div>
-<div class="heart" style="left:30%; animation-duration:7s;"></div>
-<div class="heart" style="left:45%; animation-duration:9s;"></div>
-<div class="heart" style="left:60%; animation-duration:6.5s;"></div>
-<div class="heart" style="left:75%; animation-duration:8.5s;"></div>
-<div class="heart" style="left:85%; animation-duration:7.5s;"></div>
+  <!-- Floating hearts -->
+  <div class="heart" style="left:5%; animation-duration:6s;"></div>
+  <div class="heart" style="left:15%; animation-duration:8s;"></div>
+  <div class="heart" style="left:30%; animation-duration:7s;"></div>
+  <div class="heart" style="left:45%; animation-duration:9s;"></div>
+  <div class="heart" style="left:60%; animation-duration:6.5s;"></div>
+  <div class="heart" style="left:75%; animation-duration:8.5s;"></div>
+  <div class="heart" style="left:85%; animation-duration:7.5s;"></div>
 
-<div class="container">
-  <h1>Put Our Love in Order 💕</h1>
+  <div class="container">
+    <h1>Put Our Love in Order 💕</h1>
 
-  <div class="game-container">
-
-    <div class="column">
-      <h2>Jumbled ☁️</h2>
-      <div id="jumbled" class="box"></div>
+    <div class="game-area">
+      <div class="left" id="left"></div>
+      <div class="right" id="right"></div>
     </div>
 
-    <div class="column">
-      <h2>Correct Order 💖</h2>
-      <div id="slots" class="box"></div>
+    <div class="btn-wrapper">
+      <button id="checkBtn">Check Order 💖</button>
     </div>
 
+    <div id="result"></div>
   </div>
 
-  <button id="checkBtn">CHECK 💘</button>
-  <p id="message"></p>
-
-  <a href="games.html" class="back">← Back to Games</a>
-</div>
-
-<script src="js/game4.js"></script>
+  <script src="js/game4.js"></script>
 </body>
 </html>
