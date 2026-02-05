@@ -13,38 +13,48 @@ const songs = [
 
 let index = 0;
 let score = 0;
+let answered = false;
 
 const clueEl = document.getElementById("clue");
 const revealEl = document.getElementById("reveal");
 const progressEl = document.getElementById("progress");
+const nextBtn = document.getElementById("nextBtn");
 
 function loadSong() {
+  answered = false;
   revealEl.classList.add("hidden");
+  nextBtn.classList.add("hidden");
+
   clueEl.textContent = songs[index].clue;
   progressEl.textContent = `Song ${index + 1} of ${songs.length}`;
 }
 
 function knowSong() {
+  if (answered) return;
   score++;
-  reveal();
+  revealAnswer();
 }
 
 function skipSong() {
-  reveal();
+  if (answered) return;
+  revealAnswer();
 }
 
-function reveal() {
+function revealAnswer() {
+  answered = true;
   revealEl.textContent = songs[index].answer;
   revealEl.classList.remove("hidden");
+  nextBtn.classList.remove("hidden");
+}
 
-  setTimeout(() => {
-    index++;
-    if (index < songs.length) {
-      loadSong();
-    } else {
-      showResult();
-    }
-  }, 1200);
+function nextSong() {
+  index++;
+
+  if (index < songs.length) {
+    loadSong();
+  } else {
+    showResult();
+  }
 }
 
 function showResult() {
@@ -62,6 +72,7 @@ function showResult() {
   revealEl.textContent = message;
   revealEl.classList.remove("hidden");
   progressEl.textContent = "";
+  nextBtn.classList.add("hidden");
 }
 
 loadSong();
