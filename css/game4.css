@@ -3,6 +3,10 @@ body {
   font-family: 'Great Vibes', cursive;
   background: url("../images/bg1.jpg") no-repeat center/cover;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   overflow-y: auto;     /* ✅ allow vertical scroll */
   overflow-x: hidden;
 }
