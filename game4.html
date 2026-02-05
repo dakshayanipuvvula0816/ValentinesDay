@@ -3,45 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Put Our Love in Order 💖</title>
-  <link rel="stylesheet" href="css/gameX.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/game6.css">
+
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Floating Hearts -->
-  <div class="heart" style="left:5%; animation-duration:6s;"></div>
-  <div class="heart" style="left:20%; animation-duration:8s;"></div>
-  <div class="heart" style="left:40%; animation-duration:7s;"></div>
-  <div class="heart" style="left:60%; animation-duration:9s;"></div>
-  <div class="heart" style="left:80%; animation-duration:6.5s;"></div>
+  <div class="heart" style="left:10%; animation-duration:6s;"></div>
+  <div class="heart" style="left:30%; animation-duration:8s;"></div>
+  <div class="heart" style="left:50%; animation-duration:7s;"></div>
+  <div class="heart" style="left:70%; animation-duration:9s;"></div>
+  <div class="heart" style="left:90%; animation-duration:6.5s;"></div>
 
   <div class="container">
     <h1>Put Our Love in Order 💖</h1>
 
     <div class="game-area">
-      <!-- Left side -->
+      <!-- Jumbled -->
       <div class="box">
         <h2>Jumbled 💭</h2>
-        <div id="items">
-          <!-- Numbers will be injected -->
-        </div>
+        <div id="items"></div>
       </div>
 
-      <!-- Right side -->
+      <!-- Correct Order -->
       <div class="box">
         <h2>Correct Order 💕</h2>
-        <div id="slots">
-          <!-- Empty slots -->
-        </div>
+        <div id="slots"></div>
       </div>
     </div>
 
     <button onclick="checkOrder()">CHECK 💖</button>
     <p id="message"></p>
 
-    <a href="games.html" class="back">← Back to Games</a>
+    <a href="../games.html" class="back">← Back to Games</a>
   </div>
 
-  <script src="js/gameX.js"></script>
+  <!-- JS -->
+  <script src="../js/game6.js"></script>
 </body>
 </html>
