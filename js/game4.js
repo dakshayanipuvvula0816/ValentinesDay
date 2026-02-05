@@ -13,13 +13,13 @@ shuffled.forEach(num => {
   div.draggable = true;
 
   div.addEventListener("dragstart", e => {
-    e.dataTransfer.setData("text", num);
+    e.dataTransfer.setData("text/plain", num);
   });
 
   itemsDiv.appendChild(div);
 });
 
-// Create empty slots
+// Create slots
 for (let i = 0; i < 10; i++) {
   const slot = document.createElement("div");
   slot.className = "slot";
@@ -30,7 +30,7 @@ for (let i = 0; i < 10; i++) {
     e.preventDefault();
     if (slot.textContent !== "") return;
 
-    const data = e.dataTransfer.getData("text");
+    const data = e.dataTransfer.getData("text/plain");
     slot.textContent = data;
     slot.classList.add("filled");
 
