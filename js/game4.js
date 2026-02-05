@@ -1,28 +1,9 @@
-// ✅ THIS ARRAY DEFINES THE CORRECT ORDER
-const sentences = [
-  "We met for the first time 💫",
-  "We started talking every day 📱",
-  "Our first laugh together 😂",
-  "Late night conversations 🌙",
-  "That moment I realized I love you 💖",
-  "Our first fight 😅",
-  "We made up stronger 💞",
-  "Creating memories together ✨",
-  "Dreaming about the future 💍",
-  "Forever started with us 💘"
-];
+const correctOrder = ["1","2","3","4","5","6","7","8","9","10"];
+const shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
 
-// Copy = correct order reference
-const correctOrder = [...sentences];
-
-// Shuffle for left side
-const shuffled = [...sentences].sort(() => Math.random() - 0.5);
-
-const jumbled = document.getElementById("jumbled");
-const slots = document.getElementById("slots");
-const message = document.getElementById("message");
-
-let draggedItem = null;
+const left = document.getElementById("left");
+const right = document.getElementById("right");
+const result = document.getElementById("result");
 
 // Create draggable items
 shuffled.forEach(text => {
@@ -31,17 +12,20 @@ shuffled.forEach(text => {
   div.textContent = text;
   div.draggable = true;
   div.dataset.value = text;
-  jumbled.appendChild(div);
+  left.appendChild(div);
 });
 
 // Create empty slots
-sentences.forEach(() => {
+correctOrder.forEach(() => {
   const slot = document.createElement("div");
   slot.className = "slot";
-  slots.appendChild(slot);
+  slot.dataset.value = "";
+  right.appendChild(slot);
 });
 
-// Drag logic
+// Drag & Drop
+let draggedItem = null;
+
 document.addEventListener("dragstart", e => {
   if (e.target.classList.contains("item")) {
     draggedItem = e.target;
@@ -49,39 +33,30 @@ document.addEventListener("dragstart", e => {
 });
 
 document.addEventListener("dragover", e => {
-  if (e.target.classList.contains("slot") || e.target.classList.contains("box")) {
+  if (e.target.classList.contains("slot")) {
     e.preventDefault();
   }
 });
 
 document.addEventListener("drop", e => {
-  if (!draggedItem) return;
-
-  if (e.target.classList.contains("slot") && e.target.children.length === 0) {
-    e.target.appendChild(draggedItem);
-  } else if (e.target.classList.contains("box")) {
-    e.target.appendChild(draggedItem);
+  if (e.target.classList.contains("slot") && draggedItem) {
+    if (!e.target.textContent) {
+      e.target.textContent = draggedItem.textContent;
+      e.target.dataset.value = draggedItem.dataset.value;
+      draggedItem.remove();
+      draggedItem = null;
+    }
   }
-
-  draggedItem = null;
 });
 
-// ✅ CHECK ORDER
+// Check order
 document.getElementById("checkBtn").addEventListener("click", () => {
-  const placedOrder = [...slots.children].map(
-    slot => slot.firstChild?.dataset.value || null
-  );
+  const slots = document.querySelectorAll(".slot");
+  const userOrder = Array.from(slots).map(s => s.dataset.value);
 
-  if (placedOrder.includes(null)) {
-    message.textContent = "Place all moments first 💕";
-    return;
+  if (JSON.stringify(userOrder) === JSON.stringify(correctOrder)) {
+    result.textContent = "Perfect 💖 Our love is in order!";
+  } else {
+    result.textContent = "Oops 😅 Try again, my love!";
   }
-
-  const correct = placedOrder.every(
-    (text, index) => text === correctOrder[index]
-  );
-
-  message.textContent = correct
-    ? "Perfect 💖 Our love story is in the right order!"
-    : "Not quite 😅 Try again, love!";
 });
