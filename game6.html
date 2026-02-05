@@ -11,24 +11,22 @@
   <!-- Floating Hearts -->
   <div class="heart" style="left:5%; animation-duration:6s;"></div>
   <div class="heart" style="left:15%; animation-duration:8s;"></div>
-  <div class="heart" style="left:25%; animation-duration:7s;"></div>
-  <div class="heart" style="left:35%; animation-duration:9s;"></div>
-  <div class="heart" style="left:45%; animation-duration:6.5s;"></div>
-  <div class="heart" style="left:55%; animation-duration:8.5s;"></div>
-  <div class="heart" style="left:65%; animation-duration:7.5s;"></div>
-  <div class="heart" style="left:75%; animation-duration:9s;"></div>
-  <div class="heart" style="left:85%; animation-duration:6s;"></div>
+  <div class="heart" style="left:30%; animation-duration:7s;"></div>
+  <div class="heart" style="left:45%; animation-duration:9s;"></div>
+  <div class="heart" style="left:60%; animation-duration:6.5s;"></div>
+  <div class="heart" style="left:75%; animation-duration:8.5s;"></div>
+  <div class="heart" style="left:90%; animation-duration:7.5s;"></div>
 
   <div class="container">
     <h1>Guess the Love Song 🎶</h1>
 
-    <div class="quiz-box">
-      <p id="question"></p>
+    <div class="card">
+      <p id="clue"></p>
+      <p id="reveal" class="hidden"></p>
 
-      <div class="options">
-        <button class="option" onclick="selectAnswer(0)"></button>
-        <button class="option" onclick="selectAnswer(1)"></button>
-        <button class="option" onclick="selectAnswer(2)"></button>
+      <div class="buttons">
+        <button onclick="knowSong()">💗 I know this song</button>
+        <button onclick="skipSong()">💭 Skip</button>
       </div>
     </div>
 
