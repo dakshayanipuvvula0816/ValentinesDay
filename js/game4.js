@@ -1,3 +1,4 @@
+// ✅ THIS ARRAY DEFINES THE CORRECT ORDER
 const sentences = [
   "We met for the first time 💫",
   "We started talking every day 📱",
@@ -11,57 +12,53 @@ const sentences = [
   "Forever started with us 💘"
 ];
 
-// Correct order = as written above
+// Copy = correct order reference
 const correctOrder = [...sentences];
 
-// Shuffle for jumbled side
+// Shuffle for left side
 const shuffled = [...sentences].sort(() => Math.random() - 0.5);
 
-const jumbledBox = document.getElementById("jumbled");
-const slotsBox = document.getElementById("slots");
+const jumbled = document.getElementById("jumbled");
+const slots = document.getElementById("slots");
 const message = document.getElementById("message");
+
+let draggedItem = null;
 
 // Create draggable items
 shuffled.forEach(text => {
-  const item = document.createElement("div");
-  item.className = "item";
-  item.textContent = text;
-  item.draggable = true;
-  item.dataset.value = text;
-  jumbledBox.appendChild(item);
+  const div = document.createElement("div");
+  div.className = "item";
+  div.textContent = text;
+  div.draggable = true;
+  div.dataset.value = text;
+  jumbled.appendChild(div);
 });
 
 // Create empty slots
 sentences.forEach(() => {
   const slot = document.createElement("div");
   slot.className = "slot";
-  slotsBox.appendChild(slot);
+  slots.appendChild(slot);
 });
 
-let draggedItem = null;
-
-// Drag start
+// Drag logic
 document.addEventListener("dragstart", e => {
   if (e.target.classList.contains("item")) {
     draggedItem = e.target;
   }
 });
 
-// Allow drop
 document.addEventListener("dragover", e => {
   if (e.target.classList.contains("slot") || e.target.classList.contains("box")) {
     e.preventDefault();
   }
 });
 
-// Drop logic (flexible movement)
 document.addEventListener("drop", e => {
   if (!draggedItem) return;
 
-  if (e.target.classList.contains("slot")) {
-    if (e.target.children.length === 0) {
-      e.target.appendChild(draggedItem);
-    }
+  if (e.target.classList.contains("slot") && e.target.children.length === 0) {
+    e.target.appendChild(draggedItem);
   } else if (e.target.classList.contains("box")) {
     e.target.appendChild(draggedItem);
   }
@@ -69,20 +66,22 @@ document.addEventListener("drop", e => {
   draggedItem = null;
 });
 
-// Check answer
+// ✅ CHECK ORDER
 document.getElementById("checkBtn").addEventListener("click", () => {
-  const placed = [...slotsBox.children].map(
+  const placedOrder = [...slots.children].map(
     slot => slot.firstChild?.dataset.value || null
   );
 
-  if (placed.includes(null)) {
-    message.textContent = "Place all the moments first 💕";
+  if (placedOrder.includes(null)) {
+    message.textContent = "Place all moments first 💕";
     return;
   }
 
-  const isCorrect = placed.every((text, i) => text === correctOrder[i]);
+  const correct = placedOrder.every(
+    (text, index) => text === correctOrder[index]
+  );
 
-  message.textContent = isCorrect
+  message.textContent = correct
     ? "Perfect 💖 Our love story is in the right order!"
-    : "Almost 😅 Try again, love!";
+    : "Not quite 😅 Try again, love!";
 });
