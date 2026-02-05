@@ -3,46 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Put Our Love in Order 💖</title>
-
-  <!-- CSS -->
   <link rel="stylesheet" href="css/game4.css">
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Floating Hearts -->
-  <div class="heart" style="left:10%; animation-duration:6s;"></div>
-  <div class="heart" style="left:30%; animation-duration:8s;"></div>
-  <div class="heart" style="left:50%; animation-duration:7s;"></div>
-  <div class="heart" style="left:70%; animation-duration:9s;"></div>
-  <div class="heart" style="left:90%; animation-duration:6.5s;"></div>
+<!-- Floating hearts -->
+<div class="heart" style="left:10%; animation-duration:6s;"></div>
+<div class="heart" style="left:30%; animation-duration:8s;"></div>
+<div class="heart" style="left:55%; animation-duration:7s;"></div>
+<div class="heart" style="left:75%; animation-duration:9s;"></div>
 
-  <div class="container">
-    <h1>Put Our Love in Order 💖</h1>
+<h1>Put Our Love in Order 💕</h1>
 
-    <div class="game-area">
-      <!-- Jumbled -->
-      <div class="box">
-        <h2>Jumbled 💭</h2>
-        <div id="items"></div>
-      </div>
+<div class="game-container">
 
-      <!-- Correct Order -->
-      <div class="box">
-        <h2>Correct Order 💕</h2>
-        <div id="slots"></div>
-      </div>
-    </div>
-
-    <button onclick="checkOrder()">CHECK 💖</button>
-    <p id="message"></p>
-
-    <a href="games.html" class="back">← Back to Games</a>
+  <div class="column">
+    <h2>Jumbled ☁️</h2>
+    <div id="jumbled" class="box"></div>
   </div>
 
-  <!-- JS -->
-  <script src="js/game4.js"></script>
+  <div class="column">
+    <h2>Correct Order 💖</h2>
+    <div id="slots" class="box"></div>
+  </div>
+
+</div>
+
+<button id="checkBtn">CHECK 💘</button>
+<p id="message"></p>
+
+<a href="games.html" class="back">← Back to Games</a>
+
+<script src="js/game4.js"></script>
 </body>
 </html>
