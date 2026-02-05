@@ -1,54 +1,88 @@
-const correctOrder = ["1","2","3","4","5","6","7","8","9","10"];
-const shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
+const sentences = [
+  "We met for the first time 💫",
+  "We started talking every day 📱",
+  "Our first laugh together 😂",
+  "Late night conversations 🌙",
+  "That moment I realized I love you 💖",
+  "Our first fight 😅",
+  "We made up stronger 💞",
+  "Creating memories together ✨",
+  "Dreaming about the future 💍",
+  "Forever started with us 💘"
+];
 
-const itemsDiv = document.getElementById("items");
-const slotsDiv = document.getElementById("slots");
+// Correct order = as written above
+const correctOrder = [...sentences];
+
+// Shuffle for jumbled side
+const shuffled = [...sentences].sort(() => Math.random() - 0.5);
+
+const jumbledBox = document.getElementById("jumbled");
+const slotsBox = document.getElementById("slots");
 const message = document.getElementById("message");
 
 // Create draggable items
-shuffled.forEach(num => {
-  const div = document.createElement("div");
-  div.className = "item";
-  div.textContent = num;
-  div.draggable = true;
-
-  div.addEventListener("dragstart", e => {
-    e.dataTransfer.setData("text/plain", num);
-  });
-
-  itemsDiv.appendChild(div);
+shuffled.forEach(text => {
+  const item = document.createElement("div");
+  item.className = "item";
+  item.textContent = text;
+  item.draggable = true;
+  item.dataset.value = text;
+  jumbledBox.appendChild(item);
 });
 
-// Create slots
-for (let i = 0; i < 10; i++) {
+// Create empty slots
+sentences.forEach(() => {
   const slot = document.createElement("div");
   slot.className = "slot";
+  slotsBox.appendChild(slot);
+});
 
-  slot.addEventListener("dragover", e => e.preventDefault());
+let draggedItem = null;
 
-  slot.addEventListener("drop", e => {
-    e.preventDefault();
-    if (slot.textContent !== "") return;
-
-    const data = e.dataTransfer.getData("text/plain");
-    slot.textContent = data;
-    slot.classList.add("filled");
-
-    document.querySelectorAll(".item").forEach(item => {
-      if (item.textContent === data) item.remove();
-    });
-  });
-
-  slotsDiv.appendChild(slot);
-}
-
-function checkOrder() {
-  const placed = Array.from(document.querySelectorAll(".slot"))
-    .map(slot => slot.textContent);
-
-  if (JSON.stringify(placed) === JSON.stringify(correctOrder)) {
-    message.textContent = "💖 Perfect! Our love story is in order 😍";
-  } else {
-    message.textContent = "💔 Oops! Try again, love 💕";
+// Drag start
+document.addEventListener("dragstart", e => {
+  if (e.target.classList.contains("item")) {
+    draggedItem = e.target;
   }
-}
+});
+
+// Allow drop
+document.addEventListener("dragover", e => {
+  if (e.target.classList.contains("slot") || e.target.classList.contains("box")) {
+    e.preventDefault();
+  }
+});
+
+// Drop logic (flexible movement)
+document.addEventListener("drop", e => {
+  if (!draggedItem) return;
+
+  if (e.target.classList.contains("slot")) {
+    if (e.target.children.length === 0) {
+      e.target.appendChild(draggedItem);
+    }
+  } else if (e.target.classList.contains("box")) {
+    e.target.appendChild(draggedItem);
+  }
+
+  draggedItem = null;
+});
+
+// Check answer
+document.getElementById("checkBtn").addEventListener("click", () => {
+  const placed = [...slotsBox.children].map(
+    slot => slot.firstChild?.dataset.value || null
+  );
+
+  if (placed.includes(null)) {
+    message.textContent = "Place all the moments first 💕";
+    return;
+  }
+
+  const isCorrect = placed.every((text, i) => text === correctOrder[i]);
+
+  message.textContent = isCorrect
+    ? "Perfect 💖 Our love story is in the right order!"
+    : "Almost 😅 Try again, love!";
+});
