@@ -1,12 +1,16 @@
 const reasons = [
-  "You make me smile even on my worst days 💕",
-  "Your care makes my world feel safe 💖",
-  "You understand me without words ✨",
-  "You make love feel effortless ❤️",
-  "Your laughter is my favorite sound 🎶",
-  "You believe in me when I don’t 💫",
+  "You make my bad days softer 💖",
   "Life feels warmer with you 🌸",
-  "You are my forever promise 💍"
+  "You understand me deeply ✨",
+  "Your smile is my favorite view 😊",
+  "You make me feel safe 🤍",
+  "You believe in my dreams 💫",
+  "Your voice calms my heart 🎶",
+  "You are my comfort place 🫶",
+  "You love me as I am 💕",
+  "You make ordinary moments special 🌷",
+  "You choose me every day ❤️",
+  "You are my forever 💍"
 ];
 
 const hearts = document.querySelectorAll(".heart");
@@ -17,7 +21,7 @@ hearts.forEach(heart => {
     hearts.forEach(h => h.classList.remove("active"));
     heart.classList.add("active");
 
-    const index = heart.getAttribute("data-index");
+    const index = heart.dataset.index;
     reasonText.textContent = reasons[index];
   });
 });
