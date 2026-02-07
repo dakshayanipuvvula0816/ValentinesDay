@@ -21,7 +21,7 @@ cards.forEach(img => {
   card.innerHTML = `
     <div class="card-face front">❤️</div>
     <div class="card-face back">
-      <img src="../images/${img}">
+      <img src="images/${img}">
     </div>
   `;
 
