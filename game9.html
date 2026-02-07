@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Why I Love You 💖</title>
-  <link rel="stylesheet" href="css/game9.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Why I Love You 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/game9.css">
 </head>
+
 <body>
+<div class="bg"></div>
 
-  <!-- Floating hearts -->
-  <div id="floating-hearts"></div>
+<h1>Why I Love You ✨💖</h1>
 
-  <div class="container">
-    <h1 class="title">Why I Love You ✨💖</h1>
+<div class="container">
+  <div class="heart-grid">
+    <!-- 10 hearts placed using grid -->
+    <div class="heart" data-text="Your smile melts my heart 😊" style="grid-area:1/2"></div>
+    <div class="heart" data-text="You understand me like no one else 💭" style="grid-area:1/4"></div>
 
-    <div class="game-container">
+    <div class="heart" data-text="You make every day brighter 🌞" style="grid-area:2/1"></div>
+    <div class="heart" data-text="You support me always 🤍" style="grid-area:2/3"></div>
+    <div class="heart" data-text="You make me laugh endlessly 😂" style="grid-area:2/5"></div>
 
-      <!-- HEART SHAPE -->
-      <div class="heart-shape">
-        <div class="heart-btn" data-reason="You make every day brighter 💫"></div>
-        <div class="heart-btn" data-reason="You understand me without words 💖"></div>
-        <div class="heart-btn" data-reason="Life feels warmer with you 🌸"></div>
-        <div class="heart-btn" data-reason="Your smile melts my heart 😊"></div>
-        <div class="heart-btn" data-reason="You make me feel safe 🫶"></div>
-        <div class="heart-btn" data-reason="You are my peace 🌙"></div>
-        <div class="heart-btn" data-reason="You turn moments into memories ✨"></div>
-        <div class="heart-btn" data-reason="You are my forever ❤️"></div>
-        <div class="heart-btn" data-reason="You make love feel easy 💕"></div>
-        <div class="heart-btn" data-reason="You are my favorite thought 💭"></div>
-        <div class="heart-btn" data-reason="You bring joy effortlessly 🌈"></div>
-        <div class="heart-btn" data-reason="You inspire the best in me 🌟"></div>
-        <div class="heart-btn" data-reason="You make ordinary things special ✨"></div>
-        <div class="heart-btn" data-reason="You are home to my heart 🏡"></div>
-      </div>
+    <div class="heart" data-text="Your kindness inspires me ✨" style="grid-area:3/1"></div>
+    <div class="heart" data-text="You feel like home 🏡" style="grid-area:3/5"></div>
 
-      <!-- REASON BOX -->
-      <div class="reason-box">
-        <h2>💌 Reason</h2>
-        <p id="reason-text">Click a heart to reveal 💕</p>
-      </div>
+    <div class="heart" data-text="You believe in me 💫" style="grid-area:4/2"></div>
+    <div class="heart" data-text="You make love feel easy 💕" style="grid-area:4/4"></div>
 
-    </div>
+    <div class="heart" data-text="You are simply you 💖" style="grid-area:5/3"></div>
   </div>
 
-  <script src="js/game9.js"></script>
+  <div class="reason-box">
+    <h2>💌 Reason</h2>
+    <p id="reasonText">Click a heart to reveal 💖</p>
+  </div>
+</div>
+
+<script src="js/game9.js"></script>
 </body>
 </html>
