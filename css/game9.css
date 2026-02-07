@@ -1,100 +1,127 @@
-/* ==============================
-   GLOBAL / BACKGROUND
-================================*/
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-
-  background: url("../images/bg1.jpg") no-repeat center/cover;
-  font-family: 'Great Vibes', cursive;
-  overflow: hidden;
-  position: relative;
-  color: white;
 }
 
-/* Dark overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 0;
-}
-
-/* ==============================
-   FLOATING HEARTS
-================================*/
-@keyframes floatHearts {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-1000px) scale(1.4); opacity: 0; }
-}
-
-.floating-heart {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background: #ff4d6d;
-  transform: rotate(45deg);
-  bottom: -40px;
-  animation: floatHearts linear infinite;
-  z-index: 0;
-}
-
-.floating-heart::before,
-.floating-heart::after {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background: #ff4d6d;
-  border-radius: 50%;
-}
-
-.floating-heart::before { top: -11px; left: 0; }
-.floating-heart::after  { left: 11px; top: 0; }
-
-/* ==============================
-   MAIN CONTAINER
-================================*/
-.container {
-  position: relative;
-  z-index: 1;
+html, body {
   width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* ==============================
-   TITLE
-================================*/
-h1 {
-  font-size: 60px;
-  margin-bottom: 50px;
-  text-shadow: 0 0 20px rgba(255,255,255,0.8);
+body {
+  background: url("bg1.jpg") center/cover no-repeat;
 }
 
-/* ==============================
-   GAME LAYOUT
-================================*/
+/* Floating hearts background */
+#floating-hearts span {
+  position: absolute;
+  color: rgba(255,255,255,0.6);
+  animation: floatUp linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 1;
+  }
+}
+
+/* Main container */
+.container {
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 64px;
+  color: white;
+  text-shadow: 0 0 20px pink;
+  margin-bottom: 40px;
+}
+
+/* Game layout */
 .game-container {
   display: flex;
-  gap: 100px;
+  justify-content: center;
   align-items: center;
+  gap: 90px;
+  width: 100%;
 }
 
-/* ==============================
-   HEART BOARD
-================================*/
-.heart-board {
+/* Heart shape layout */
+.heart-shape {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 280px;
 }
 
-/* ==============================
-   HEART BUTTONS
+/* Individual hearts */
+.heart-btn {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  background: white;
+  clip-path: path("M28 50 C-10 30 10 0 28 14 C46 0 66 30 28 50 Z");
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255,255,255,0.8);
+  transition: all 0.4s ease;
+}
+
+.heart-btn.active {
+  background: radial-gradient(circle, #ff6b81, #ff1f5a);
+  box-shadow: 0 0 25px #ff8fab;
+}
+
+/* Heart positions (perfect heart shape) */
+.heart-btn:nth-child(1) { top: 0; left: 90px; }
+.heart-btn:nth-child(2) { top: 0; left: 150px; }
+
+.heart-btn:nth-child(3) { top: 50px; left: 50px; }
+.heart-btn:nth-child(4) { top: 50px; left: 130px; }
+.heart-btn:nth-child(5) { top: 50px; left: 210px; }
+
+.heart-btn:nth-child(6) { top: 100px; left: 20px; }
+.heart-btn:nth-child(7) { top: 100px; left: 90px; }
+.heart-btn:nth-child(8) { top: 100px; left: 170px; }
+.heart-btn:nth-child(9) { top: 100px; left: 250px; }
+
+.heart-btn:nth-child(10) { top: 160px; left: 60px; }
+.heart-btn:nth-child(11) { top: 160px; left: 140px; }
+.heart-btn:nth-child(12) { top: 160px; left: 220px; }
+
+.heart-btn:nth-child(13) { top: 220px; left: 110px; }
+.heart-btn:nth-child(14) { top: 220px; left: 170px; }
+
+/* Reason box */
+.reason-box {
+  width: 360px;
+  min-height: 220px;
+  padding: 30px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  color: white;
+  text-shadow: 0 0 10px pink;
+}
+
+.reason-box h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+#reason-text {
+  font-size: 18px;
+  line-height: 1.6;
+}
