@@ -124,12 +124,12 @@ h1 {
 .heart::after { left: 10px; top: 0; }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .game-board {
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(4, 95px);
   }
   .card {
-    width: 100px;
-    height: 130px;
+    width: 95px;
+    height: 125px;
   }
 }
