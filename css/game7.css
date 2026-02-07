@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url("../images/bg1.jpg") no-repeat center/cover;
+  font-family: 'Great Vibes', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Title */
+h1 {
+  margin: 30px 0 20px;
+  font-size: 3rem;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+/* Game grid */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 120px);
+  gap: 18px;
+  perspective: 1000px;
+  z-index: 1;
+}
+
+/* Card */
+.card {
+  width: 120px;
+  height: 150px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Front */
+.front {
+  background: rgba(255, 77, 109, 0.9);
+  font-size: 2.5rem;
+}
+
+/* Back */
+.back {
+  transform: rotateY(180deg);
+  background: white;
+}
+
+.back img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* Back to games */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  background: rgba(255,77,109,0.8);
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: rgba(214,51,108,0.9);
+}
+
+/* Floating hearts */
+@keyframes floatHearts {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+}
+
+.heart {
+  position: absolute;
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  background: #ff4d6d;
+  transform: rotate(45deg);
+  animation: floatHearts linear infinite;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-board {
+    grid-template-columns: repeat(4, 100px);
+  }
+  .card {
+    width: 100px;
+    height: 130px;
+  }
+}
