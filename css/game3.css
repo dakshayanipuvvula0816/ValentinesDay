@@ -79,7 +79,7 @@ h1 {
   height: 20px;
   background: red;
   border-radius: 50%;
-  transform: translateY(-50%);
+  will-change: transform;
 }
 
 /* Swing animation */
