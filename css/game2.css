@@ -58,9 +58,12 @@ body {
   position: absolute;
   width: 36px;
   height: 36px;
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #fff 0%, #f0f0ff 50%, #fff 100%);
   transform: rotate(45deg);
-  box-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 0 35px rgba(255, 255, 255, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.8);
   pointer-events: none;
   z-index: 5;
   animation: heartShimmerSparkle 2s ease-in-out infinite;
@@ -72,8 +75,10 @@ body {
   position: absolute;
   width: 36px;
   height: 36px;
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #fff 0%, #f5f5ff 50%, #fff 100%);
   border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  animation: heartShimmerSparkle 2s ease-in-out infinite;
 }
 
 .falling-heart::before {
@@ -89,13 +94,13 @@ body {
 @keyframes heartShimmerSparkle {
   0%, 100% {
     opacity: 1;
-    filter: brightness(1.05);
-    box-shadow: 0 0 12px rgba(255, 77, 109, 0.7);
+    filter: brightness(1.15);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 0 32px rgba(255, 255, 255, 0.5), inset 0 0 18px rgba(255, 255, 255, 0.7);
   }
   50% {
     opacity: 0.98;
-    filter: brightness(1.2);
-    box-shadow: 0 0 20px rgba(255, 77, 109, 0.9);
+    filter: brightness(1.5);
+    box-shadow: 0 0 26px rgba(255, 255, 255, 1), 0 0 48px rgba(255, 255, 255, 0.75), 0 0 8px rgba(255, 255, 255, 0.9), inset 0 0 24px rgba(255, 255, 255, 1);
   }
 }
 
