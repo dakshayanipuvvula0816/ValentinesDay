@@ -54,80 +54,80 @@ h1 {
 .heart::before { top: -9px; }
 .heart::after { left: 9px; }
 
-/* Ground */
-.ground {
+.game3 {
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
   position: relative;
-  width: 90%;
-  height: 260px;
-  margin: 40px auto 20px;
 }
 
-/* Batsman */
+.title {
+  text-align: center;
+  color: white;
+  font-size: 42px;
+  text-shadow: 0 0 15px pink;
+}
+
+.play-area {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  margin-top: 40px;
+}
+
 .batsman {
   position: absolute;
   left: 80px;
   bottom: 0;
-  height: 220px;
+  width: 180px;
 }
 
-/* Ball */
+/* RED BALL (CSS) */
 .ball {
   position: absolute;
-  right: 40px;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  background: red;
+  right: -40px;
+  bottom: 145px;
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at 30% 30%, #ffcccc, red);
   border-radius: 50%;
-  will-change: transform;
+  box-shadow: 0 0 15px red;
 }
 
-/* Swing animation */
-@keyframes swingBall {
-  0% { transform: translate(0, -50%); }
-  40% { transform: translate(-180px, -70%); }
-  70% { transform: translate(-320px, -40%); }
-  100% { transform: translate(-420px, -50%); }
-}
-
-/* Hit zone */
-#hitZone {
+/* HIT CIRCLE */
+.hit-zone {
   position: absolute;
   left: 260px;
-  top: 50%;
-  width: 60px;
-  height: 60px;
+  bottom: 150px;
+  width: 90px;
+  height: 90px;
+  border: 3px dashed gold;
   border-radius: 50%;
-  border: 2px dashed rgba(255,255,255,0.6);
-  transform: translateY(-50%);
-  opacity: 0;
-}
-#hitZone.active {
-  opacity: 1;
-  box-shadow: 0 0 25px 8px white;
+  box-shadow: 0 0 25px gold;
 }
 
-/* Click hint */
-#hint {
+/* TAP TEXT */
+.tap-now {
   position: absolute;
-  top: 30%;
-  left: 260px;
+  left: 250px;
+  bottom: 255px;
+  font-size: 22px;
+  color: gold;
+  text-shadow: 0 0 12px gold;
+  display: none;
+}
+
+/* SCOREBOARD */
+.scoreboard {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
   transform: translateX(-50%);
-  font-size: 26px;
-  text-shadow: 0 0 15px gold;
-  opacity: 0;
-}
-#hint.show {
-  opacity: 1;
-}
-
-/* Score strip */
-.score-strip {
-  margin-top: 20px;
-  background: rgba(0,0,0,0.5);
-  padding: 12px 20px;
-  border-radius: 12px;
-  display: inline-flex;
-  gap: 20px;
-  font-size: 20px;
+  display: flex;
+  gap: 25px;
+  background: rgba(0,0,0,0.55);
+  padding: 15px 25px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 0 20px pink;
 }
