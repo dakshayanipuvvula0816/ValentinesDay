@@ -4,19 +4,25 @@
   const scoreEl = document.getElementById("score");
   const messageEl = document.getElementById("message");
 
+  const TOTAL_HEARTS = 30;
   let score = 0;
-  let basketLeft = 50; // percent; will convert to px for positioning
+  let heartsSpawned = 0;
+  let gameOver = false;
+  let basketLeft = 50;
   const basketWidth = 120;
   const heartSize = 36;
   const fallSpeed = 2.2;
   const hearts = [];
-  let messageTimeout = null;
+  let spawnIntervalId = null;
 
   function getPlayAreaRect() {
     return playArea.getBoundingClientRect();
   }
 
   function spawnHeart() {
+    if (gameOver || heartsSpawned >= TOTAL_HEARTS) return;
+    heartsSpawned++;
+
     const rect = getPlayAreaRect();
     const maxLeft = Math.max(0, rect.width - heartSize);
     const left = Math.random() * maxLeft;
@@ -34,15 +40,37 @@
       width: heartSize,
       height: heartSize
     });
+
+    if (heartsSpawned >= TOTAL_HEARTS && spawnIntervalId) {
+      clearInterval(spawnIntervalId);
+      spawnIntervalId = null;
+    }
   }
 
-  function showMessage(text) {
-    if (messageTimeout) clearTimeout(messageTimeout);
+  function showMessage(text, isGameOver, isWin) {
     messageEl.textContent = text;
+    messageEl.classList.remove("game-over", "win");
+    if (isGameOver) messageEl.classList.add("game-over");
+    if (isWin) messageEl.classList.add("win");
     messageEl.classList.add("show");
-    messageTimeout = setTimeout(function () {
-      messageEl.classList.remove("show");
-    }, 1500);
+    if (!isGameOver) {
+      setTimeout(function () {
+        messageEl.classList.remove("show");
+      }, 1500);
+    }
+  }
+
+  function endGame(isWin) {
+    gameOver = true;
+    if (spawnIntervalId) {
+      clearInterval(spawnIntervalId);
+      spawnIntervalId = null;
+    }
+    for (let i = hearts.length - 1; i >= 0; i--) {
+      const h = hearts[i];
+      if (h.el.parentNode) h.el.parentNode.removeChild(h.el);
+    }
+    hearts.length = 0;
   }
 
   function getBasketRect() {
@@ -57,6 +85,8 @@
   }
 
   function gameLoop() {
+    if (gameOver) return;
+
     const rect = getPlayAreaRect();
     const basketRect = getBasketRect();
     const catchZoneTop = rect.height - 80;
@@ -73,8 +103,15 @@
         if (caught) {
           score++;
           scoreEl.textContent = score;
+          if (score === TOTAL_HEARTS) {
+            endGame(true);
+            showMessage("Thanks for keeping my heart safe.", true, true);
+            return;
+          }
         } else {
-          showMessage("Better luck next time!");
+          endGame(false);
+          showMessage("Better luck next time!", true, false);
+          return;
         }
 
         if (h.el.parentNode) h.el.parentNode.removeChild(h.el);
@@ -101,7 +138,7 @@
   }
 
   document.addEventListener("keydown", function (e) {
-    const rect = getPlayAreaRect();
+    if (gameOver) return;
     const step = 4;
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
       e.preventDefault();
@@ -117,10 +154,12 @@
   let touchStartX = 0;
   let basketStartLeft = 0;
   playArea.addEventListener("touchstart", function (e) {
+    if (gameOver) return;
     touchStartX = e.touches[0].clientX;
     basketStartLeft = basketLeft;
   }, { passive: true });
   playArea.addEventListener("touchmove", function (e) {
+    if (gameOver) return;
     const dx = e.touches[0].clientX - touchStartX;
     const rect = getPlayAreaRect();
     const sensitivity = 100 / rect.width;
@@ -133,7 +172,7 @@
     setBasketPosition(basketLeft);
   });
 
-  setInterval(spawnHeart, 1800);
+  spawnIntervalId = setInterval(spawnHeart, 1800);
   setTimeout(spawnHeart, 400);
 
   gameLoop();
