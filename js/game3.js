@@ -8,33 +8,58 @@ let score = 0;
 let balls = 0;
 let canHit = false;
 
+let posX = 0;
+let posY = 0;
+let swingDir = 1;
+
 function bowlBall() {
-  ball.style.animation = "none";
-  ball.offsetHeight;
-  ball.style.animation = "swingBall 1.5s linear forwards";
+  posX = 0;
+  posY = 0;
+  swingDir = Math.random() > 0.5 ? 1 : -1;
 
-  // HIT WINDOW
-  setTimeout(() => {
-    canHit = true;
-    hitZone.classList.add("active");
-    hint.classList.add("show");
+  ball.style.right = "40px";
+  ball.style.top = "50%";
 
-    setTimeout(() => {
+  canHit = false;
+  hitZone.classList.remove("active");
+  hint.classList.remove("show");
+
+  let frames = 0;
+  const interval = setInterval(() => {
+    frames++;
+
+    posX += 6;
+    posY += swingDir * Math.sin(frames / 10) * 2;
+
+    ball.style.transform =
+      `translate(${-posX}px, calc(-50% + ${posY}px))`;
+
+    // HIT WINDOW
+    if (frames === 60) {
+      canHit = true;
+      hitZone.classList.add("active");
+      hint.classList.add("show");
+    }
+
+    if (frames === 75) {
       canHit = false;
       hitZone.classList.remove("active");
       hint.classList.remove("show");
-    }, 300);
-  }, 900);
+    }
 
-  // Next ball
-  setTimeout(nextBall, 1600);
+    if (frames > 95) {
+      clearInterval(interval);
+      nextBall();
+    }
+  }, 16);
 }
 
 function nextBall() {
   balls++;
   updateOvers();
+
   if (balls < 18) {
-    bowlBall();
+    setTimeout(bowlBall, 500);
   }
 }
 
@@ -52,6 +77,8 @@ document.body.addEventListener("click", () => {
   scoreEl.textContent = score;
 
   canHit = false;
+  hitZone.classList.remove("active");
+  hint.classList.remove("show");
 });
 
 bowlBall();
