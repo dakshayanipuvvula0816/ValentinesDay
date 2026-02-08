@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Game 3 – Cricket of Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/game3.css">
 </head>
 <body>
@@ -27,38 +28,30 @@
     <!-- Score popup container (4 or 6 appears here) -->
     <div class="score-popup" id="scorePopup"></div>
 
-    <div class="scoreboard">
+    <!-- Single line: players + score + statistics -->
+    <div class="info-strip">
       <span>Batsman: Srinivas Naveen (Texas)</span>
+      <span class="sep">|</span>
       <span>Bowler: Daksha (AP)</span>
+      <span class="sep">|</span>
       <span id="score">Score: 0/0</span>
+      <span class="sep">|</span>
       <span id="overs">Overs: 0.0 / 3</span>
-    </div>
-
-    <!-- Statistics table -->
-    <div class="stats-section">
-      <h2>Statistics</h2>
-      <table class="stats-table">
-        <thead>
-          <tr>
-            <th>Runs</th>
-            <th>4s</th>
-            <th>6s</th>
-            <th>Balls</th>
-            <th>Strike rate</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="statRuns">0</td>
-            <td id="statFours">0</td>
-            <td id="statSixes">0</td>
-            <td id="statBalls">0</td>
-            <td id="statSR">0.00</td>
-          </tr>
-        </tbody>
-      </table>
+      <span class="sep">|</span>
+      <span>Runs <strong id="statRuns">0</strong></span>
+      <span class="sep">|</span>
+      <span>4s <strong id="statFours">0</strong></span>
+      <span class="sep">|</span>
+      <span>6s <strong id="statSixes">0</strong></span>
+      <span class="sep">|</span>
+      <span>Balls <strong id="statBalls">0</strong></span>
+      <span class="sep">|</span>
+      <span>SR <strong id="statSR">0.00</strong></span>
     </div>
   </div>
+
+  <!-- Cracker particles container (pointer-events: none) -->
+  <div class="crackers-container" id="crackersContainer" aria-hidden="true"></div>
 
   <script src="js/game3.js"></script>
 </body>
