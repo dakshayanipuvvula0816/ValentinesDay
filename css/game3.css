@@ -123,3 +123,36 @@ h1 {
   text-decoration: none;
   font-size: 20px;
 }
+#hitZone {
+  position: absolute;
+  left: 260px;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.6);
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+#hitZone.active {
+  opacity: 1;
+  box-shadow: 0 0 20px 6px rgba(255, 255, 255, 0.8);
+}
+
+#hint {
+  position: absolute;
+  top: 35%;
+  left: 260px;
+  transform: translateX(-50%);
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 0 0 15px gold;
+  opacity: 0;
+}
+
+#hint.show {
+  opacity: 1;
+}
+
