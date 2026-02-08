@@ -83,7 +83,7 @@
       top: r.top - area.top,
       width: r.width
     };
-  
+  }
 
   function gameLoop() {
     if (gameOver) return;
