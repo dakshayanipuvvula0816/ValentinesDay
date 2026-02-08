@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url("../images/bg1.jpg") no-repeat center/cover;
+  font-family: 'Great Vibes', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 55px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px pink;
+}
+
+.ground {
+  position: relative;
+  width: 800px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+.batsman {
+  position: absolute;
+  left: 50px;
+  bottom: 0;
+  height: 220px;
+}
+
+.ball {
+  position: absolute;
+  right: 0;
+  top: 150px;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.score-strip {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 12px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+#result {
+  margin-top: 15px;
+  font-size: 26px;
+  text-shadow: 0 0 10px gold;
+}
+
+/* Sparkles for SIX */
+.sparkle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-size: 30px;
+  animation: sparkle 1s ease-out forwards;
+}
+
+@keyframes sparkle {
+  0% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -150px) scale(2); opacity: 0; }
+}
+
+/* Floating hearts */
+@keyframes floatHearts {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-900px); opacity: 0; }
+}
+
+.heart {
+  position: absolute;
+  bottom: -40px;
+  width: 18px;
+  height: 18px;
+  background: #ff4d6d;
+  transform: rotate(45deg);
+  animation: floatHearts linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before { top: -9px; }
+.heart::after { left: 9px; }
+
+.back {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
