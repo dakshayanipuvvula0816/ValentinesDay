@@ -1,36 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Game 3 – Cricket of Love</title>
-<link rel="stylesheet" href="css/game3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game 3 – Cricket of Love</title>
+  <link rel="stylesheet" href="css/game3.css">
 </head>
-
 <body>
-<div class="game">
+  <div class="game">
+    <h1 class="title">Cricket of Love 🏏❤️</h1>
 
-  <h1 class="title">Cricket of Love 🏏❤️</h1>
+    <div class="ground">
+      <!-- Ball comes from right, swings towards batsman -->
+      <div class="ball" id="ball"></div>
 
-  <div class="ground">
+      <!-- Batsman: click here when the spot is highlighted -->
+      <div class="batsman-wrap" id="batsmanWrap">
+        <img src="images/batsman.png" class="batsman" alt="Batsman">
+        <!-- Highlighted sweet spot for testing: click when this glows -->
+        <div class="sweet-spot" id="sweetSpot">
+          <span class="sweet-spot-label">CLICK HERE WHEN BALL ARRIVES</span>
+        </div>
+      </div>
+    </div>
 
-    <img src="images/batsman.png" class="batsman">
+    <!-- Score popup container (4 or 6 appears here) -->
+    <div class="score-popup" id="scorePopup"></div>
 
-    <div class="hit-zone"></div>
-    <div class="tap">TAP NOW!</div>
+    <div class="scoreboard">
+      <span>Batsman: Srinivas Naveen (Texas)</span>
+      <span>Bowler: Daksha (AP)</span>
+      <span id="score">Score: 0/0</span>
+      <span id="overs">Overs: 0.0 / 3</span>
+    </div>
 
-    <div class="ball" id="ball"></div>
-
+    <!-- Statistics table -->
+    <div class="stats-section">
+      <h2>Statistics</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Runs</th>
+            <th>4s</th>
+            <th>6s</th>
+            <th>Balls</th>
+            <th>Strike rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="statRuns">0</td>
+            <td id="statFours">0</td>
+            <td id="statSixes">0</td>
+            <td id="statBalls">0</td>
+            <td id="statSR">0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="scoreboard">
-    <span>Batsman: Srinivas Naveen (Texas)</span>
-    <span>Bowler: Daksha (AP)</span>
-    <span id="score">Score: 0/0</span>
-    <span id="overs">Overs: 0.0 / 3</span>
-  </div>
-
-</div>
-
-<script src="js/game3.js"></script>
+  <script src="js/game3.js"></script>
 </body>
 </html>
