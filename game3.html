@@ -2,42 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Love Cricket 🏏</title>
-  <link rel="stylesheet" href="css/game3.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>Game 3 – Cricket Love</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Floating hearts -->
-<div class="heart" style="left:10%; animation-duration:6s;"></div>
-<div class="heart" style="left:30%; animation-duration:8s;"></div>
-<div class="heart" style="left:60%; animation-duration:7s;"></div>
-<div class="heart" style="left:80%; animation-duration:9s;"></div>
+<div class="game3">
 
-<div class="container">
+  <h1 class="title">Cricket of Love 🏏❤️</h1>
 
-  <h1>Love Cricket 🏏💖</h1>
+  <div class="play-area">
 
-  <div class="ground">
     <img src="images/batsman.png" class="batsman">
 
-    <div id="ball" class="ball"></div>
+    <!-- HIT ZONE -->
+    <div class="hit-zone"></div>
+    <div class="tap-now">TAP NOW!</div>
 
-    <!-- DEBUG HIT ZONE -->
-    <div id="hitZone"></div>
-    <div id="hint">CLICK NOW!</div>
+    <!-- RED BALL -->
+    <div class="ball" id="ball"></div>
+
   </div>
 
-  <!-- TV style score strip -->
-  <div class="score-strip">
-    <span><b>Batsman:</b> Srinivas Naveen (Texas)</span>
-    <span><b>Bowler:</b> Daksha (AP)</span>
-    <span><b>Score:</b> <span id="score">0</span>/0</span>
-    <span><b>Overs:</b> <span id="overs">0.0</span> / 3</span>
+  <div class="scoreboard">
+    <span>Batsman: Srinivas Naveen (Texas)</span>
+    <span>Bowler: Daksha (AP)</span>
+    <span id="score">Score: 0/0</span>
+    <span id="overs">Overs: 0.0 / 3</span>
   </div>
 
 </div>
 
-<script src="js/game3.js"></script>
+<script src="game3.js"></script>
 </body>
 </html>
