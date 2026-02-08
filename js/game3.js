@@ -10,6 +10,7 @@
   const statSixes = document.getElementById("statSixes");
   const statBalls = document.getElementById("statBalls");
   const statSR = document.getElementById("statSR");
+  const crackersContainer = document.getElementById("crackersContainer");
 
   let runs = 0;
   let fours = 0;
@@ -33,7 +34,7 @@
     const startX = getStartX();
 
     function animate() {
-      progress += 0.014;
+      progress += 0.005;
 
       if (progress >= 1) {
         cancelAnimationFrame(animationId);
@@ -52,8 +53,8 @@
       ball.style.top = y + "px";
       ball.style.bottom = "auto";
 
-      // Sweet spot is "on" when ball is in the hitting window (e.g. 50%–75% of journey)
-      if (progress > 0.48 && progress < 0.72) {
+      // Sweet spot is "on" when ball is in the hitting window (wider for easier timing)
+      if (progress > 0.42 && progress < 0.78) {
         isHittable = true;
         batsmanWrap.classList.add("hittable");
       } else {
@@ -75,6 +76,7 @@
 
     if (run > 0) {
       showScorePopup(run);
+      if (run === 4 || run === 6) triggerCrackers();
     }
 
     updateScoreboard();
@@ -93,6 +95,33 @@
     setTimeout(function () {
       scorePopup.classList.remove("show");
     }, 800);
+  }
+
+  function triggerCrackers() {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight * 0.35;
+    const colors = ["#ff69b4", "#ff1493", "#ffd700", "#fff", "#c41e3a"];
+    const count = 32;
+
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+      const dist = 80 + Math.random() * 120;
+      const dx = Math.cos(angle) * dist + (Math.random() - 0.5) * 40;
+      const dy = Math.sin(angle) * dist + (Math.random() - 0.5) * 40;
+
+      const el = document.createElement("div");
+      el.className = "cracker-particle" + (Math.random() > 0.5 ? " square" : "");
+      el.style.left = (centerX - 5) + "px";
+      el.style.top = (centerY - 5) + "px";
+      el.style.setProperty("--cracker-dx", dx + "px");
+      el.style.setProperty("--cracker-dy", dy + "px");
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      crackersContainer.appendChild(el);
+
+      setTimeout(function () {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, 1700);
+    }
   }
 
   function updateScoreboard() {
