@@ -6,9 +6,12 @@
 }
 
 body {
-  background: url("images/bg1.jpg") center/cover no-repeat fixed;
-  height: 100vh;
-  overflow: hidden;
+  margin: 0;
+  font-family: 'Great Vibes', cursive;
+  background: url("../images/bg1.jpg") no-repeat center/cover;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: white;
 }
 
 .game {
