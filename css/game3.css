@@ -13,6 +13,35 @@ body {
   overflow-x: hidden;
   color: white;
 }
+/* Floating hearts */
+@keyframes floatHearts {
+  from { transform: translateY(0) rotate(0); opacity: 1; }
+  to { transform: translateY(-900px) rotate(360deg); opacity: 0; }
+}
+
+.heart {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #ff4d6d;
+  bottom: -40px;
+  transform: rotate(45deg);
+  animation: floatHearts linear infinite;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before { top: -8px; left: 0; }
+.heart::after { left: 8px; top: 0; }
 
 .game {
   height: 100vh;
