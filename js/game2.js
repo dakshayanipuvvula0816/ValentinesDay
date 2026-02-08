@@ -3,6 +3,7 @@
   const basket = document.getElementById("basket");
   const scoreEl = document.getElementById("score");
   const messageEl = document.getElementById("message");
+  const restartBtn = document.getElementById("restartBtn");
 
   const TOTAL_HEARTS = 30;
   let score = 0;
@@ -74,14 +75,7 @@
   }
 
   function getBasketRect() {
-    const r = basket.getBoundingClientRect();
-    const area = playArea.getBoundingClientRect();
-    return {
-      left: r.left - area.left,
-      right: r.right - area.left,
-      top: r.top - area.top,
-      width: r.width
-    };
+    return basket.getBoundingClientRect();
   }
 
   function gameLoop() {
@@ -97,8 +91,8 @@
       h.el.style.top = h.top + "px";
 
       if (h.top >= catchZoneTop) {
-        const heartCenterX = h.left + h.width / 2;
-        const caught = heartCenterX >= basketRect.left && heartCenterX <= basketRect.right;
+        const heartCenterScreenX = rect.left + h.left + h.width / 2;
+        const caught = heartCenterScreenX >= basketRect.left && heartCenterScreenX <= basketRect.right;
 
         if (caught) {
           score++;
@@ -123,8 +117,7 @@
   }
 
   function setBasketPosition(percent) {
-    const rect = getPlayAreaRect();
-    const maxLeft = Math.max(1, rect.width - basketWidth);
+    const maxLeft = Math.max(1, window.innerWidth - basketWidth);
     const leftPx = Math.max(0, Math.min(maxLeft, (percent / 100) * maxLeft));
     basket.style.left = leftPx + "px";
     basket.style.transform = "none";
@@ -135,6 +128,28 @@
     basket.style.left = "50%";
     basket.style.transform = "translateX(-50%)";
     basketLeft = 50;
+  }
+
+  function restartGame() {
+    gameOver = false;
+    score = 0;
+    heartsSpawned = 0;
+    scoreEl.textContent = "0";
+    messageEl.classList.remove("show", "game-over", "win");
+    messageEl.textContent = "";
+    for (let i = hearts.length - 1; i >= 0; i--) {
+      const h = hearts[i];
+      if (h.el.parentNode) h.el.parentNode.removeChild(h.el);
+    }
+    hearts.length = 0;
+    if (spawnIntervalId) {
+      clearInterval(spawnIntervalId);
+      spawnIntervalId = null;
+    }
+    initBasket();
+    spawnIntervalId = setInterval(spawnHeart, 1800);
+    setTimeout(spawnHeart, 400);
+    gameLoop();
   }
 
   document.addEventListener("keydown", function (e) {
@@ -171,6 +186,8 @@
   window.addEventListener("resize", function () {
     setBasketPosition(basketLeft);
   });
+
+  restartBtn.addEventListener("click", restartGame);
 
   spawnIntervalId = setInterval(spawnHeart, 1800);
   setTimeout(spawnHeart, 400);
