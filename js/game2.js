@@ -75,8 +75,15 @@
   }
 
   function getBasketRect() {
-    return basket.getBoundingClientRect();
-  }
+    const r = basket.getBoundingClientRect();
+    const area = playArea.getBoundingClientRect();
+    return {
+      left: r.left - area.left,
+      right: r.right - area.left,
+      top: r.top - area.top,
+      width: r.width
+    };
+  
 
   function gameLoop() {
     if (gameOver) return;
@@ -91,8 +98,8 @@
       h.el.style.top = h.top + "px";
 
       if (h.top >= catchZoneTop) {
-        const heartCenterScreenX = rect.left + h.left + h.width / 2;
-        const caught = heartCenterScreenX >= basketRect.left && heartCenterScreenX <= basketRect.right;
+        const heartCenterX = h.left + h.width / 2;
+        const caught = heartCenterX >= basketRect.left && heartCenterX <= basketRect.right;
 
         if (caught) {
           score++;
@@ -117,7 +124,8 @@
   }
 
   function setBasketPosition(percent) {
-    const maxLeft = Math.max(1, window.innerWidth - basketWidth);
+    const rect = getPlayAreaRect();
+    const maxLeft = Math.max(1, rect.width - basketWidth);
     const leftPx = Math.max(0, Math.min(maxLeft, (percent / 100) * maxLeft));
     basket.style.left = leftPx + "px";
     basket.style.transform = "none";
