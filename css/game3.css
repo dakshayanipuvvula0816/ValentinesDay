@@ -1,13 +1,10 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("../images/bg1.jpg") no-repeat center/cover;
+  background: url("../images/bg1.jpg") center/cover no-repeat;
   font-family: 'Great Vibes', cursive;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
-  color: white;
+  position: relative;
 }
 
 body::before {
@@ -22,86 +19,29 @@ body::before {
   position: relative;
   z-index: 1;
   text-align: center;
-  width: 100%;
+  color: white;
 }
 
 h1 {
-  font-size: 55px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 15px pink;
-}
-
-.ground {
-  position: relative;
-  width: 800px;
-  height: 300px;
-  margin: 20px auto;
-}
-
-.batsman {
-  position: absolute;
-  left: 50px;
-  bottom: 0;
-  height: 220px;
-}
-
-.ball {
-  position: absolute;
-  right: 0;
-  top: 150px;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-}
-
-.score-strip {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  padding: 12px;
-  background: rgba(0,0,0,0.5);
-  border-radius: 30px;
-  margin-top: 10px;
-  font-size: 20px;
-}
-
-#result {
-  margin-top: 15px;
-  font-size: 26px;
-  text-shadow: 0 0 10px gold;
-}
-
-/* Sparkles for SIX */
-.sparkle {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  font-size: 30px;
-  animation: sparkle 1s ease-out forwards;
-}
-
-@keyframes sparkle {
-  0% { transform: translate(-50%, 0) scale(1); opacity: 1; }
-  100% { transform: translate(-50%, -150px) scale(2); opacity: 0; }
+  font-size: 52px;
+  margin-top: 20px;
+  text-shadow: 2px 2px 10px black;
 }
 
 /* Floating hearts */
-@keyframes floatHearts {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-900px); opacity: 0; }
+@keyframes float {
+  from { transform: translateY(0) rotate(0); opacity: 1; }
+  to { transform: translateY(-900px) rotate(360deg); opacity: 0; }
 }
-
 .heart {
   position: absolute;
-  bottom: -40px;
   width: 18px;
   height: 18px;
   background: #ff4d6d;
   transform: rotate(45deg);
-  animation: floatHearts linear infinite;
+  bottom: -40px;
+  animation: float linear infinite;
 }
-
 .heart::before,
 .heart::after {
   content: "";
@@ -111,18 +51,46 @@ h1 {
   background: #ff4d6d;
   border-radius: 50%;
 }
-
 .heart::before { top: -9px; }
 .heart::after { left: 9px; }
 
-.back {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
+/* Ground */
+.ground {
+  position: relative;
+  width: 90%;
+  height: 260px;
+  margin: 40px auto 20px;
 }
+
+/* Batsman */
+.batsman {
+  position: absolute;
+  left: 80px;
+  bottom: 0;
+  height: 220px;
+}
+
+/* Ball */
+.ball {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+/* Swing animation */
+@keyframes swingBall {
+  0% { transform: translate(0, -50%); }
+  40% { transform: translate(-180px, -70%); }
+  70% { transform: translate(-320px, -40%); }
+  100% { transform: translate(-420px, -50%); }
+}
+
+/* Hit zone */
 #hitZone {
   position: absolute;
   left: 260px;
@@ -133,26 +101,33 @@ h1 {
   border: 2px dashed rgba(255,255,255,0.6);
   transform: translateY(-50%);
   opacity: 0;
-  transition: 0.2s;
 }
-
 #hitZone.active {
   opacity: 1;
-  box-shadow: 0 0 20px 6px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 25px 8px white;
 }
 
+/* Click hint */
 #hint {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 260px;
   transform: translateX(-50%);
-  font-size: 28px;
-  color: #fff;
+  font-size: 26px;
   text-shadow: 0 0 15px gold;
   opacity: 0;
 }
-
 #hint.show {
   opacity: 1;
 }
 
+/* Score strip */
+.score-strip {
+  margin-top: 20px;
+  background: rgba(0,0,0,0.5);
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: inline-flex;
+  gap: 20px;
+  font-size: 20px;
+}
