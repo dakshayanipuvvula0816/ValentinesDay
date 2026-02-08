@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe Script', cursive;
 }
 
 body {
@@ -13,105 +12,227 @@ body {
   overflow-x: hidden;
   color: white;
 }
-/* Floating hearts */
-@keyframes floatHearts {
-  from { transform: translateY(0) rotate(0); opacity: 1; }
-  to { transform: translateY(-900px) rotate(360deg); opacity: 0; }
-}
-
-.heart {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #ff4d6d;
-  bottom: -40px;
-  transform: rotate(45deg);
-  animation: floatHearts linear infinite;
-  z-index: 0;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #ff4d6d;
-  border-radius: 50%;
-}
-
-.heart::before { top: -8px; left: 0; }
-.heart::after { left: 8px; top: 0; }
 
 .game {
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
+  position: relative;
 }
 
 .title {
   text-align: center;
   font-size: 40px;
   color: white;
-  text-shadow: 0 0 20px pink;
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.9);
 }
 
+/* Playing area */
 .ground {
   position: relative;
-  height: 65vh;
-  margin-top: 40px;
+  height: 55vh;
+  min-height: 320px;
+  margin-top: 20px;
+}
+
+/* Ball – red cricket ball, will be moved by JS */
+.ball {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffd6d6, #c41e3a);
+  box-shadow: 0 0 12px rgba(196, 30, 58, 0.8), inset -2px -2px 4px rgba(0,0,0,0.3);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Batsman container – clickable when ball is in zone */
+.batsman-wrap {
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+  width: 200px;
+  cursor: default;
+  z-index: 5;
+}
+
+.batsman-wrap.hittable {
+  cursor: pointer;
 }
 
 .batsman {
-  position: absolute;
-  left: 60px;
-  bottom: 0;
-  width: 190px;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
 }
 
-/* BALL */
-.ball {
+/* Sweet spot – highlighted when it’s time to hit (for testing) */
+.sweet-spot {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffd6d6, red);
-  box-shadow: 0 0 15px red;
+  border: 3px dashed rgba(255, 215, 0, 0.5);
+  background: rgba(255, 215, 0, 0.08);
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.15s, box-shadow 0.15s;
 }
 
-/* HIT ZONE */
-.hit-zone {
+.sweet-spot-label {
   position: absolute;
-  left: 250px;
-  bottom: 150px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px dashed gold;
-  box-shadow: 0 0 30px gold;
+  left: 50%;
+  top: -28px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  color: rgba(255, 215, 0, 0.7);
+  font-family: sans-serif;
 }
 
-/* TAP TEXT */
-.tap {
-  position: absolute;
-  left: 255px;
-  bottom: 265px;
-  font-size: 22px;
+/* When it’s time to hit – highlight the spot clearly */
+.batsman-wrap.hittable .sweet-spot {
+  opacity: 1;
+  border: 3px solid gold;
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 25px gold, inset 0 0 20px rgba(255, 215, 0, 0.2);
+  animation: pulse-spot 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-spot {
+  from {
+    box-shadow: 0 0 20px gold, inset 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+  to {
+    box-shadow: 0 0 35px gold, 0 0 50px rgba(255, 215, 0, 0.4), inset 0 0 25px rgba(255, 215, 0, 0.3);
+  }
+}
+
+/* Score popup – 4 or 6 that appears and fades */
+.score-popup {
+  position: fixed;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  font-size: 72px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 20px gold, 0 0 40px rgba(255, 215, 0, 0.6);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.score-popup.show {
+  opacity: 1;
+  animation: popup-bounce 0.6s ease-out forwards;
+}
+
+.score-popup.four {
+  color: #fff;
+  font-size: 72px;
+  text-shadow: 0 0 25px gold, 0 0 50px rgba(255, 215, 0, 0.5);
+}
+
+.score-popup.six {
   color: gold;
-  display: none;
-  text-shadow: 0 0 15px gold;
+  font-size: 84px;
+  text-shadow: 0 0 30px gold, 0 0 60px orange;
 }
 
-/* SCOREBOARD */
+@keyframes popup-bounce {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scoreboard strip */
 .scoreboard {
   position: absolute;
-  bottom: 25px;
+  bottom: 200px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 25px;
-  background: rgba(0,0,0,0.6);
-  padding: 15px 25px;
-  border-radius: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 12px 24px;
+  border-radius: 16px;
   color: white;
-  box-shadow: 0 0 25px pink;
+  box-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+/* Statistics section */
+.stats-section {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 420px;
+}
+
+.stats-section h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+  font-family: sans-serif;
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 12px 16px;
+  text-align: center;
+  color: white;
+}
+
+.stats-table th {
+  background: rgba(196, 30, 58, 0.6);
+  font-weight: 600;
+}
+
+.stats-table td {
+  background: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.stats-table tr:not(:last-child) td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.stats-table th:not(:last-child),
+.stats-table td:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
