@@ -81,6 +81,8 @@ puzzles.forEach(puzzle => {
       board.classList.add("done");
       solvedCount++;
       if (solvedCount === 3) fireworks();
+        fireworks();
+        showWinPopup();
     }
   }
 });
@@ -93,28 +95,46 @@ function shuffle(arr) {
 }
 
 function fireworks() {
-  for (let i = 0; i < 120; i++) {
-    const spark = document.createElement("div");
-    spark.style.position = "fixed";
-    spark.style.left = "50%";
-    spark.style.top = "50%";
-    spark.style.width = "6px";
-    spark.style.height = "6px";
-    spark.style.background = `hsl(${Math.random()*360},100%,60%)`;
-    spark.style.borderRadius = "50%";
-    document.body.appendChild(spark);
+  for (let burst = 0; burst < 3; burst++) {
+    setTimeout(() => {
+      for (let i = 0; i < 80; i++) {
+        const spark = document.createElement("div");
+        spark.style.position = "fixed";
+        spark.style.left = Math.random() * 100 + "vw";
+        spark.style.top = Math.random() * 50 + "vh";
+        spark.style.width = "6px";
+        spark.style.height = "6px";
+        spark.style.background = `hsl(${Math.random() * 360},100%,60%)`;
+        spark.style.borderRadius = "50%";
+        spark.style.zIndex = "1000";
+        document.body.appendChild(spark);
 
-    const angle = Math.random() * Math.PI * 2;
-    const dist = Math.random() * 320;
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 200 + Math.random() * 200;
 
-    spark.animate([
-      { transform: "translate(0,0)", opacity: 1 },
-      { transform: `translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`, opacity: 0 }
-    ], { duration: 1300 });
+        spark.animate(
+          [
+            { transform: "translate(0,0)", opacity: 1 },
+            {
+              transform: `translate(${Math.cos(angle) * dist}px,${Math.sin(angle) * dist}px)`,
+              opacity: 0
+            }
+          ],
+          { duration: 1200, easing: "ease-out" }
+        );
 
-    setTimeout(() => spark.remove(), 1300);
+        setTimeout(() => spark.remove(), 1200);
+      }
+    }, burst * 400);
   }
 }
+
+
+function showWinPopup() {
+  const popup = document.getElementById("winPopup");
+  if (popup) popup.style.display = "flex";
+}
+
 
 /* Buttons */
 function resetGame() {
