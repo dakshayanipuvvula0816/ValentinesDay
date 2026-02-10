@@ -5,33 +5,32 @@
 }
 
 body {
-  height: 100vh;
-  background: url("images/bg1.jpg") center/cover no-repeat fixed;
-  overflow: hidden;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("../images/bg1.jpg") center/cover no-repeat fixed;
   font-family: 'Segoe Script', cursive;
+  overflow-x: hidden;
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .hearts span {
   position: fixed;
-  bottom: -50px;
-  color: pink;
-  font-size: 24px;
+  bottom: -40px;
+  font-size: 22px;
+  opacity: 0.7;
   animation: floatUp linear infinite;
-  opacity: 0.8;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
   from { transform: translateY(0); }
-  to { transform: translateY(-110vh); }
-}
-
-.game {
-  padding: 20px;
+  to { transform: translateY(-120vh); }
 }
 
 .title {
   text-align: center;
+  margin: 25px 0;
   font-size: 42px;
   color: white;
   text-shadow: 0 0 15px pink;
@@ -41,13 +40,16 @@ body {
   display: flex;
   justify-content: center;
   gap: 40px;
-  margin-top: 30px;
 }
 
 .puzzle {
-  width: 260px;
+  background: rgba(255,255,255,0.15);
+  padding: 12px;
+  border-radius: 18px;
+  box-shadow: 0 0 20px rgba(255,192,203,0.4);
 }
 
+/* Board */
 .board {
   width: 260px;
   height: 260px;
@@ -60,12 +62,15 @@ body {
 }
 
 .slot {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.25);
 }
 
+/* Tray */
 .tray {
-  display: flex;
-  flex-wrap: wrap;
+  width: 260px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 4px;
 }
 
@@ -73,21 +78,22 @@ body {
   width: 63px;
   height: 63px;
   background-size: 260px 260px;
+  border-radius: 6px;
   cursor: grab;
-  border-radius: 4px;
 }
 
+/* Buttons */
 .controls {
-  margin-top: 25px;
+  margin: 30px 0;
   text-align: center;
 }
 
 .btn {
-  padding: 12px 26px;
-  margin: 0 10px;
+  padding: 12px 28px;
+  margin: 0 12px;
+  font-size: 18px;
   border-radius: 25px;
   border: none;
-  font-size: 18px;
   background: pink;
   box-shadow: 0 0 20px pink;
   cursor: pointer;
