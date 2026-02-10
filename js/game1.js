@@ -1,104 +1,118 @@
 const puzzles = document.querySelectorAll(".puzzle");
-let solvedCount = 0;
+let solved = 0;
 
-puzzles.forEach((puzzle) => {
-  const imgSrc = puzzle.dataset.img;
-  const size = 3;
+/* Floating hearts */
+const heartBox = document.querySelector(".hearts");
+for (let i = 0; i < 30; i++) {
+  const h = document.createElement("span");
+  h.innerText = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = 8 + Math.random() * 10 + "s";
+  heartBox.appendChild(h);
+}
+
+puzzles.forEach(puzzle => {
+  const img = puzzle.dataset.img;
+  const size = 4;
+
+  const board = document.createElement("div");
+  board.className = "board";
+
+  const tray = document.createElement("div");
+  tray.className = "tray";
+
+  puzzle.append(board, tray);
+
   let pieces = [];
 
   for (let i = 0; i < size * size; i++) {
+    const slot = document.createElement("div");
+    slot.className = "slot";
+    slot.dataset.index = i;
+    board.appendChild(slot);
+
     const piece = document.createElement("div");
     piece.className = "piece";
     piece.draggable = true;
     piece.dataset.index = i;
 
-    const x = (i % size) * (260 / size);
-    const y = Math.floor(i / size) * (260 / size);
-
-    piece.style.backgroundImage = `url(${imgSrc})`;
+    const x = (i % size) * 63;
+    const y = Math.floor(i / size) * 63;
+    piece.style.backgroundImage = `url(${img})`;
     piece.style.backgroundPosition = `-${x}px -${y}px`;
 
     pieces.push(piece);
   }
 
   shuffle(pieces);
-  pieces.forEach(p => puzzle.appendChild(p));
+  pieces.forEach(p => tray.appendChild(p));
 
   let dragged = null;
 
-  puzzle.addEventListener("dragstart", e => {
+  document.addEventListener("dragstart", e => {
     if (!e.target.classList.contains("piece")) return;
     dragged = e.target;
-    dragged.classList.add("dragging");
   });
 
-  puzzle.addEventListener("dragend", e => {
-    if (dragged) dragged.classList.remove("dragging");
+  document.addEventListener("dragover", e => e.preventDefault());
+
+  document.addEventListener("drop", e => {
+    if (!dragged) return;
+
+    if (e.target.classList.contains("slot")) {
+      e.target.innerHTML = "";
+      e.target.appendChild(dragged);
+      checkPuzzle(board);
+    }
+
+    if (e.target.classList.contains("tray")) {
+      e.target.appendChild(dragged);
+    }
   });
 
-  puzzle.addEventListener("dragover", e => e.preventDefault());
+  function checkPuzzle(board) {
+    const slots = board.querySelectorAll(".slot");
+    const correct = [...slots].every(slot =>
+      slot.firstChild &&
+      slot.firstChild.dataset.index === slot.dataset.index
+    );
 
-  puzzle.addEventListener("drop", e => {
-    if (!e.target.classList.contains("piece")) return;
-    const target = e.target;
-
-    const draggedIndex = [...puzzle.children].indexOf(dragged);
-    const targetIndex = [...puzzle.children].indexOf(target);
-
-    puzzle.insertBefore(dragged, puzzle.children[targetIndex]);
-    puzzle.insertBefore(target, puzzle.children[draggedIndex]);
-
-    checkPuzzle(puzzle);
-  });
-});
-
-function checkPuzzle(puzzle) {
-  const pieces = puzzle.querySelectorAll(".piece");
-  const correct = [...pieces].every(
-    (p, i) => p.dataset.index == i
-  );
-
-  if (correct && !puzzle.classList.contains("solved")) {
-    puzzle.classList.add("solved");
-    solvedCount++;
-
-    if (solvedCount === 3) {
-      launchFireworks();
+    if (correct && !board.classList.contains("done")) {
+      board.classList.add("done");
+      solved++;
+      if (solved === 3) fireworks();
     }
   }
-}
+});
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 }
 
-function launchFireworks() {
-  for (let i = 0; i < 80; i++) {
-    const spark = document.createElement("div");
-    spark.style.position = "absolute";
-    spark.style.left = "50%";
-    spark.style.top = "50%";
-    spark.style.width = "6px";
-    spark.style.height = "6px";
-    spark.style.background = `hsl(${Math.random() * 360},100%,60%)`;
-    spark.style.borderRadius = "50%";
-    document.getElementById("fireworks").appendChild(spark);
+function fireworks() {
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement("div");
+    s.style.position = "fixed";
+    s.style.left = "50%";
+    s.style.top = "50%";
+    s.style.width = "6px";
+    s.style.height = "6px";
+    s.style.background = `hsl(${Math.random()*360},100%,60%)`;
+    s.style.borderRadius = "50%";
+    document.body.appendChild(s);
 
-    const angle = Math.random() * 2 * Math.PI;
-    const dist = Math.random() * 300;
+    const a = Math.random() * Math.PI * 2;
+    const d = Math.random() * 300;
 
-    spark.animate([
+    s.animate([
       { transform: "translate(0,0)", opacity: 1 },
-      { transform: `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`, opacity: 0 }
-    ], {
-      duration: 1200,
-      easing: "ease-out"
-    });
+      { transform: `translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`, opacity: 0 }
+    ], { duration: 1200 });
 
-    setTimeout(() => spark.remove(), 1200);
+    setTimeout(() => s.remove(), 1200);
   }
 }
 
@@ -107,5 +121,5 @@ function resetGame() {
 }
 
 function goBack() {
-  window.location.href = "../game1..html";
+  window.location.href = "game1.html";
 }
