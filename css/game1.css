@@ -97,7 +97,7 @@ body {
 /* Bottom navigation buttons */
 .bottom-nav {
   position: fixed;
-  bottom: 30px;
+  bottom: 80px;
   left: 0;
   width: 100%;
   pointer-events: none;
@@ -106,9 +106,9 @@ body {
 .bottom-nav a {
   pointer-events: auto;
   position: absolute;
-  padding: 12px 28px;
+  padding: 8px 20px;
   font-family: 'Pacifico', cursive;
-  font-size: 22px;
+  font-size: 18px;
   color: #ffe6f0;
   text-decoration: none;
   border: 2px solid rgba(255, 230, 240, 0.8);
