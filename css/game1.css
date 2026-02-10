@@ -131,28 +131,24 @@ body {
 .back-btn {
   right: 30px;
 }
-.win-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+
+.win-message {
   display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
+  margin: 40px auto 20px;
+  padding: 24px 36px;
+  max-width: 520px;
+  text-align: center;
+
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  color: #ffe6f0;
+
+  border: 2px solid rgba(255, 230, 240, 0.8);
+  border-radius: 24px;
+  background: rgba(255, 182, 193, 0.12);
+  box-shadow: 0 0 22px rgba(255, 182, 193, 0.5);
 }
 
-.win-box {
-  font-family: 'Pacifico', cursive;
-  font-size: 28px;
-  color: #ffe6f0;
-  padding: 30px 40px;
-  border: 2px solid rgba(255, 230, 240, 0.8);
-  border-radius: 22px;
-  background: rgba(255, 182, 193, 0.15);
-  box-shadow: 0 0 25px rgba(255, 182, 193, 0.6);
-  text-align: center;
-  animation: fadeInScale 0.6s ease;
-}
 
 @keyframes fadeInScale {
   from {
