@@ -2,15 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Game 1</title>
-  <link rel="stylesheet" href="css/games.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <title>Picture Puzzle</title>
+  <link rel="stylesheet" href="css/game1.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Game 1</h1>
-    <p>🎯 Placeholder for Game 1 content. Add your surprise here!</p>
-    <button onclick="location.href='games.html'">Back to Games</button>
+
+<div class="game">
+
+  <h1 class="title">Picture Puzzle 🧩❤️</h1>
+
+  <div class="puzzles">
+
+    <div class="puzzle" data-img="images/pic1.jpg"></div>
+    <div class="puzzle" data-img="images/pic2.jpg"></div>
+    <div class="puzzle" data-img="images/pic3.jpg"></div>
+
   </div>
+
+  <div class="controls">
+    <button onclick="resetGame()">Replay</button>
+    <button onclick="goBack()">Back to Games</button>
+  </div>
+
+  <div id="fireworks"></div>
+
+</div>
+
+<script src="js/game1.js"></script>
 </body>
 </html>
