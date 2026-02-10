@@ -83,12 +83,6 @@ body {
   cursor: grab;
 }
 
-/* Buttons */
-.controls {
-  margin: 30px 0;
-  text-align: center;
-}
-
 .btn {
   padding: 12px 28px;
   margin: 0 12px;
@@ -99,3 +93,42 @@ body {
   box-shadow: 0 0 20px pink;
   cursor: pointer;
 }
+
+/* Bottom navigation buttons */
+.bottom-nav {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.bottom-nav a {
+  pointer-events: auto;
+  position: absolute;
+  padding: 12px 28px;
+  font-family: 'Pacifico', cursive;
+  font-size: 22px;
+  color: #ffe6f0;
+  text-decoration: none;
+  border: 2px solid rgba(255, 230, 240, 0.8);
+  border-radius: 30px;
+  background: transparent;
+  box-shadow: 0 0 12px rgba(255, 182, 193, 0.3);
+  transition: all 0.3s ease;
+}
+
+.bottom-nav a:hover {
+  background: rgba(255, 182, 193, 0.15);
+  box-shadow: 0 0 18px rgba(255, 182, 193, 0.6);
+}
+
+/* Positioning */
+.restart-btn {
+  left: 30px;
+}
+
+.back-btn {
+  right: 30px;
+}
+
