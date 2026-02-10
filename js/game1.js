@@ -132,9 +132,12 @@ function fireworks() {
 
 function showWinPopup() {
   const popup = document.getElementById("winPopup");
-  if (popup) popup.style.display = "flex";
+  if (!popup) {
+    console.error("winPopup not found in DOM");
+    return;
+  }
+  popup.style.display = "flex";
 }
-
 
 /* Buttons */
 function resetGame() {
