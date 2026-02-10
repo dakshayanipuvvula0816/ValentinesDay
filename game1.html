@@ -7,26 +7,24 @@
 </head>
 <body>
 
-<div class="game">
+<div class="hearts"></div>
 
+<div class="game">
   <h1 class="title">Picture Puzzle 🧩❤️</h1>
 
   <div class="puzzles">
-
     <div class="puzzle" data-img="images/pic1.jpg"></div>
     <div class="puzzle" data-img="images/pic2.jpg"></div>
     <div class="puzzle" data-img="images/pic3.jpg"></div>
-
   </div>
 
   <div class="controls">
-    <button onclick="resetGame()">Replay</button>
-    <button onclick="goBack()">Back to Games</button>
+    <button class="btn" onclick="resetGame()">Replay</button>
+    <button class="btn" onclick="goBack()">Back to Games</button>
   </div>
-
-  <div id="fireworks"></div>
-
 </div>
+
+<div id="fireworks"></div>
 
 <script src="js/game1.js"></script>
 </body>
