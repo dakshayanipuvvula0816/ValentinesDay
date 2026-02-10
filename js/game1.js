@@ -80,7 +80,7 @@ puzzles.forEach(puzzle => {
     if (solved && !board.classList.contains("done")) {
       board.classList.add("done");
       solvedCount++;
-      if (solvedCount === 3) fireworks();
+      if (solvedCount === puzzles.length){
         fireworks();
         showWinPopup();
     }
