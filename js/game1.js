@@ -1,14 +1,14 @@
 const puzzles = document.querySelectorAll(".puzzle");
-let solved = 0;
+let solvedCount = 0;
 
 /* Floating hearts */
 const heartBox = document.querySelector(".hearts");
 for (let i = 0; i < 30; i++) {
-  const h = document.createElement("span");
-  h.innerText = "❤️";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.animationDuration = 8 + Math.random() * 10 + "s";
-  heartBox.appendChild(h);
+  const heart = document.createElement("span");
+  heart.textContent = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 8 + Math.random() * 8 + "s";
+  heartBox.appendChild(heart);
 }
 
 puzzles.forEach(puzzle => {
@@ -38,6 +38,7 @@ puzzles.forEach(puzzle => {
 
     const x = (i % size) * 63;
     const y = Math.floor(i / size) * 63;
+
     piece.style.backgroundImage = `url(${img})`;
     piece.style.backgroundPosition = `-${x}px -${y}px`;
 
@@ -50,8 +51,7 @@ puzzles.forEach(puzzle => {
   let dragged = null;
 
   document.addEventListener("dragstart", e => {
-    if (!e.target.classList.contains("piece")) return;
-    dragged = e.target;
+    if (e.target.classList.contains("piece")) dragged = e.target;
   });
 
   document.addEventListener("dragover", e => e.preventDefault());
@@ -62,7 +62,7 @@ puzzles.forEach(puzzle => {
     if (e.target.classList.contains("slot")) {
       e.target.innerHTML = "";
       e.target.appendChild(dragged);
-      checkPuzzle(board);
+      checkSolved();
     }
 
     if (e.target.classList.contains("tray")) {
@@ -70,17 +70,17 @@ puzzles.forEach(puzzle => {
     }
   });
 
-  function checkPuzzle(board) {
+  function checkSolved() {
     const slots = board.querySelectorAll(".slot");
-    const correct = [...slots].every(slot =>
+    const solved = [...slots].every(slot =>
       slot.firstChild &&
       slot.firstChild.dataset.index === slot.dataset.index
     );
 
-    if (correct && !board.classList.contains("done")) {
+    if (solved && !board.classList.contains("done")) {
       board.classList.add("done");
-      solved++;
-      if (solved === 3) fireworks();
+      solvedCount++;
+      if (solvedCount === 3) fireworks();
     }
   }
 });
@@ -93,33 +93,34 @@ function shuffle(arr) {
 }
 
 function fireworks() {
-  for (let i = 0; i < 100; i++) {
-    const s = document.createElement("div");
-    s.style.position = "fixed";
-    s.style.left = "50%";
-    s.style.top = "50%";
-    s.style.width = "6px";
-    s.style.height = "6px";
-    s.style.background = `hsl(${Math.random()*360},100%,60%)`;
-    s.style.borderRadius = "50%";
-    document.body.appendChild(s);
+  for (let i = 0; i < 120; i++) {
+    const spark = document.createElement("div");
+    spark.style.position = "fixed";
+    spark.style.left = "50%";
+    spark.style.top = "50%";
+    spark.style.width = "6px";
+    spark.style.height = "6px";
+    spark.style.background = `hsl(${Math.random()*360},100%,60%)`;
+    spark.style.borderRadius = "50%";
+    document.body.appendChild(spark);
 
-    const a = Math.random() * Math.PI * 2;
-    const d = Math.random() * 300;
+    const angle = Math.random() * Math.PI * 2;
+    const dist = Math.random() * 320;
 
-    s.animate([
+    spark.animate([
       { transform: "translate(0,0)", opacity: 1 },
-      { transform: `translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`, opacity: 0 }
-    ], { duration: 1200 });
+      { transform: `translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`, opacity: 0 }
+    ], { duration: 1300 });
 
-    setTimeout(() => s.remove(), 1200);
+    setTimeout(() => spark.remove(), 1300);
   }
 }
 
+/* Buttons */
 function resetGame() {
   location.reload();
 }
 
 function goBack() {
-  window.location.href = "game1.html";
+  window.location.href = "index.html";
 }
