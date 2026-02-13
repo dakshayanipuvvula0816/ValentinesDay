@@ -70,22 +70,26 @@ puzzles.forEach(puzzle => {
     }
   });
 
-  function checkSolved() {
-    const slots = board.querySelectorAll(".slot");
-    const solved = [...slots].every(slot =>
-      slot.firstChild &&
-      slot.firstChild.dataset.index === slot.dataset.index
-    );
+  
+function checkSolved() {
+  const slots = board.querySelectorAll(".slot");
 
-    if (solved && !board.classList.contains("done")) {
-      board.classList.add("done");
-      solvedCount++;
-      if (solvedCount === 3) fireworks();
-        fireworks();
-        showWinPopup();
+  const solved = [...slots].every(slot =>
+    slot.firstChild &&
+    slot.firstChild.dataset.index === slot.dataset.index
+  );
+
+  if (solved && !board.classList.contains("done")) {
+    board.classList.add("done");
+    solvedCount++;
+
+    if (solvedCount === 3) {
+      fireworks();
+      showWinPopup();
     }
   }
-});
+}
+
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
