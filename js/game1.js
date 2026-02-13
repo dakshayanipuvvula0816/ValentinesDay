@@ -134,14 +134,19 @@ function fireworks() {
 }
 
 
+// function showWinPopup() {
+//   const popup = document.getElementById("winPopup");
+//   if (!popup) {
+//     console.error("winPopup not found in DOM");
+//     return;
+//   }
+//   popup.style.display = "flex";
+// }
+  
 function showWinPopup() {
-  const popup = document.getElementById("winPopup");
-  if (!popup) {
-    console.error("winPopup not found in DOM");
-    return;
-  }
-  popup.style.display = "flex";
+  document.getElementById("winMessage").style.display = "block";
 }
+
 
 /* Buttons */
 function resetGame() {
