@@ -5,14 +5,14 @@
   const messageEl = document.getElementById("message");
   const restartBtn = document.getElementById("restartBtn");
 
-  const TOTAL_HEARTS = 10;
+  const TOTAL_HEARTS = 15;
   let score = 0;
   let heartsSpawned = 0;
   let gameOver = false;
   let basketLeft = 50;
-  const basketWidth = 150;
+  const basketWidth = 180;
   const heartSize = 36;
-  const fallSpeed = 1.0;
+  const fallSpeed = 1.8;
   const hearts = [];
   let spawnIntervalId = null;
 
@@ -25,8 +25,9 @@
     heartsSpawned++;
 
     const rect = getPlayAreaRect();
-    const maxLeft = Math.max(0, rect.width - heartSize);
-    const left = Math.random() * maxLeft;
+    const margin = 40;  // space from left & right
+    const maxLeft = Math.max(0, rect.width - heartSize - margin * 2);
+    const left = margin + Math.random() * maxLeft;
 
     const el = document.createElement("div");
     el.className = "falling-heart";
@@ -155,7 +156,7 @@
       spawnIntervalId = null;
     }
     initBasket();
-    spawnIntervalId = setInterval(spawnHeart, 1800);
+    spawnIntervalId = setInterval(spawnHeart, 2200);
     setTimeout(spawnHeart, 400);
     gameLoop();
   }
@@ -197,7 +198,7 @@
 
   restartBtn.addEventListener("click", restartGame);
 
-  spawnIntervalId = setInterval(spawnHeart, 1800);
+  spawnIntervalId = setInterval(spawnHeart, 2200);
   setTimeout(spawnHeart, 400);
 
   gameLoop();
