@@ -1,10 +1,10 @@
 const songs = [
   { clue: "🎵 'Cause all of me loves all of you", answer: "All of Me – John Legend" },
-  { clue: "🎶 I found a love, for me", answer: "Perfect – Ed Sheeran" },
+  { clue: "🎶 I found a love, for me", answer: "Perfect – Ed Sheeran" },//
   { clue: "💖 You are my fire, the one desire", answer: "I Want It That Way – BSB" },
   { clue: "🎼 We were both young when I first saw you", answer: "Love Story – Taylor Swift" },
   { clue: "🎧 Take my hand, take my whole life too", answer: "All of Me – John Legend" },
-  { clue: "💞 Darling, you look perfect tonight", answer: "Perfect – Ed Sheeran" },
+  { clue: "💞 Darling, you look perfect tonight", answer: "Perfect – Ed Sheeran" },//
   { clue: "🎵 It's you, it's you, it's all for you", answer: "Video Games – Lana Del Rey" },
   { clue: "🎶 Can I go where you go?", answer: "Lover – Taylor Swift" },
   { clue: "💖 You make me feel like I'm living a teenage dream", answer: "Teenage Dream – Katy Perry" },
@@ -15,9 +15,9 @@ let index = 0;
 let score = 0;
 let answered = false;
 
-// One audio per song: user should add audio/audio1.mp3 ... audio/audio10.mp3
+// One audio per song: user should add audio/audio1.mp3 ... audio/audio10.mpeg
 const audioFiles = songs.map((_, i) => {
-  const audio = new Audio(`audio/audio${i + 1}.mp3`);
+  const audio = new Audio(`audio/audio${i + 1}.mpeg`);
   audio.preload = "auto";
   return audio;
 });
