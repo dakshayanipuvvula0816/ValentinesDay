@@ -17,7 +17,7 @@ let answered = false;
 
 // One audio per song: user should add audio/audio1.mp3 ... audio/audio10.mpeg
 const audioFiles = songs.map((_, i) => {
-  const audio = new Audio(`audio/audio${i + 1}.mpeg`);
+  const audio = new Audio(`../audio/audio${i + 1}.mpeg`);
   audio.preload = "auto";
   return audio;
 });
