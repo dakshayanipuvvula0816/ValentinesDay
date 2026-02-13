@@ -59,7 +59,7 @@ body {
   width: 36px;
   height: 36px;
   background: linear-gradient(135deg, #fff 0%, #f0f0ff 50%, #fff 100%);
-  transform: rotate(45deg);
+  transform: none;
   box-shadow:
     0 0 20px rgba(255, 255, 255, 0.9),
     0 0 35px rgba(255, 255, 255, 0.6),
@@ -115,7 +115,7 @@ body {
 
 .basket {
   position: absolute;
-  width: 120px;
+  width: 180px;
   height: 50px;
   background: linear-gradient(180deg, rgba(255, 182, 193, 0.95) 0%, rgba(255, 105, 135, 0.9) 100%);
   border-radius: 0 0 20px 20px;
