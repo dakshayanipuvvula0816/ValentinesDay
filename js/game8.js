@@ -2,17 +2,17 @@ const quiz = [
   {
     q: "Where did we first meet? 💕",
     options: ["School", "Online", "Work", "Party"],
-    answer: 1
-  },
-  {
-    q: "Who said 'I love you' first? ❤️",
-    options: ["Me", "You", "Both", "Don't remember"],
     answer: 0
   },
   {
-    q: "Our favorite thing to do together?",
-    options: ["Travel", "Talk", "Eat", "Sleep"],
+    q: "Who said 'I love you' first? ❤️",
+    options: ["Duu", "Buu", "Both", "Don't remember"],
     answer: 1
+  },
+  {
+    q: "Our favorite thing to do together?",
+    options: ["Travel", "Talk", "Eat", "All"],
+    answer: 3
   },
   {
     q: "What makes me happiest? 😊",
@@ -20,29 +20,29 @@ const quiz = [
     answer: 1
   },
   {
-    q: "Our favorite song together? 🎵",
-    options: ["Song A", "Song B", "Song C", "Song D"],
-    answer: 2
+    q: "My favorite song together? 🎵",
+    options: ["Te Amo", "Tum se hi", "Raanjahna", "Mitwa"],
+    answer: 1
   },
   {
     q: "Who gets angry first? 😅",
-    options: ["Me", "You", "Both", "No one"],
-    answer: 0
+    options: ["Buu", "Duu", "Both", "No one"],
+    answer: 1
   },
   {
     q: "What do I love most about you? 💖",
-    options: ["Smile", "Care", "Attitude", "Everything"],
+    options: ["Smart", "Care", "Sleepy", "Everything"],
     answer: 3
   },
   {
-    q: "Our dream trip destination? ✈️",
-    options: ["Paris", "Beach", "Mountains", "Home"],
-    answer: 0
+    q: "Doro dream trip destination? ✈️",
+    options: ["Paris", "Beach", "Mountains", "Greece"],
+    answer: 3
   },
   {
-    q: "Who is more dramatic? 🎭",
-    options: ["Me", "You", "Both", "None"],
-    answer: 1
+    q: "First Kiss? 🎭",
+    options: ["June 23.2015", "June 24,2016", "June 23,2016", "June 24,2015"],
+    answer: 3
   },
   {
     q: "Are you mine forever? 💍",
@@ -83,11 +83,11 @@ function selectAnswer(index) {
 function submitQuiz() {
   let text = "";
   if (score === 10) {
-    text = "💖 Perfect! You know us by heart 💍";
+    text = "💖 Perfect! You know us by heart - Score 10 💍";
   } else if (score >= 8) {
     text = "🥰 Amazing! Love is strong between us 💕";
   } else {
-    text = "😜 Hmm… we need more dates together!";
+    text = "😜 Hmm… we need more dates together Buu!";
   }
   result.innerText = text;
   submitBtn.style.display = "none";
