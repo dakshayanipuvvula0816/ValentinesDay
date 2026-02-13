@@ -41,6 +41,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 40px;
+  margin-top: 40px;
 }
 
 .puzzle {
@@ -94,92 +95,79 @@ body {
   cursor: pointer;
 }
 
-/* Bottom navigation buttons */
-.bottom-nav {
+/* Shared restart & back buttons (match game2) */
+.back {
   position: fixed;
-  bottom: 80px;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-}
-
-.bottom-nav a {
-  pointer-events: auto;
-  position: absolute;
-  padding: 8px 20px;
-  .bottom-nav a {
-  font-family: 'Great Vibes', cursive;
-  font-size: 18px;
-  color: #ffe6f0;
+  bottom: 20px;
+  right: 25px;
+  font-size: 22px;
+  color: #ffd6e8;
   text-decoration: none;
-  border: 2px solid rgba(255, 230, 240, 0.8);
-  border-radius: 30px;
-  background: transparent;
-  box-shadow: 0 0 12px rgba(255, 182, 193, 0.3);
-  transition: all 0.3s ease;
-}
-
-.bottom-nav a:hover {
-  background: rgba(255, 182, 193, 0.15);
-  box-shadow: 0 0 18px rgba(255, 182, 193, 0.6);
-}
-
-/* Positioning */
-.restart-btn {
-  left: 30px;
-}
-
-.back-btn {
-  right: 30px;
-}
-.win-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.win-box {
-  .bottom-nav a {
+  z-index: 20;
   font-family: 'Great Vibes', cursive;
-  font-size: 28px;
-  color: #ffe6f0;
-  padding: 30px 40px;
-  border: 2px solid rgba(255, 230, 240, 0.8);
-  border-radius: 22px;
-  background: rgba(255, 182, 193, 0.15);
-  box-shadow: 0 0 25px rgba(255, 182, 193, 0.6);
-  text-align: center;
-  animation: fadeInScale 0.6s ease;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
 }
-  .win-message {
-  display: none;   /* hide when page loads */
+
+.back:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.restart {
   position: fixed;
-  top: 50%;
+  bottom: 20px;
+  left: 25px;
+  font-size: 22px;
+  padding: 10px 24px;
+  font-family: 'Great Vibes', cursive;
+  color: #ffd6e8;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 214, 232, 0.6);
+  border-radius: 16px;
+  cursor: pointer;
+  z-index: 20;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.restart:hover {
+  background: rgba(255, 105, 135, 0.4);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Centered win message (single-line, lovely) */
+.message {
+  position: fixed;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Great Vibes', cursive;
-  font-size: 42px;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 25px 40px;
+  font-size: 32px;
+  color: #ffd6e8;
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.9);
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
-  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.3s ease;
   text-align: center;
+  max-width: 90%;
 }
 
+.message.show {
+  opacity: 1;
+  animation: fadeInScale 0.4s ease-out;
+}
 
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: scale(0.85);
+    transform: translate(-50%, -50%) scale(0.85);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 

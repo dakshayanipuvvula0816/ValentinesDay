@@ -58,12 +58,11 @@ body {
   position: absolute;
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #ff4d6d 0%, #ff1e4d 50%, #c4002f 100%);
+  background: #ff1e4d;
   transform: none;
   box-shadow:
     0 0 18px rgba(255, 0, 60, 0.9),
-    0 0 30px rgba(255, 0, 60, 0.6),
-    inset 0 0 15px rgba(255, 120, 140, 0.8);
+    0 0 30px rgba(255, 0, 60, 0.6);
   pointer-events: none;
   z-index: 5;
   animation: heartShimmerSparkle 2s ease-in-out infinite;
@@ -75,9 +74,9 @@ body {
   position: absolute;
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, #ff4d6d 0%, #ff1e4d 50%, #c4002f 100%);
+  background: #ff1e4d;
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(255, 0, 60, 0.8);
+  box-shadow: 0 0 14px rgba(255, 0, 60, 0.9);
   animation: heartShimmerSparkle 2s ease-in-out infinite;
 }
 
@@ -95,13 +94,55 @@ body {
   0%, 100% {
     opacity: 1;
     filter: brightness(1.15);
-    box-shadow: 0 0 18px rgba(255, 255, 255, 0.85), 0 0 32px rgba(255, 255, 255, 0.5), inset 0 0 18px rgba(255, 255, 255, 0.7);
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.9),
+      0 0 38px rgba(255, 0, 60, 0.7);
   }
   50% {
     opacity: 0.98;
     filter: brightness(1.5);
-    box-shadow: 0 0 26px rgba(255, 255, 255, 1), 0 0 48px rgba(255, 255, 255, 0.75), 0 0 8px rgba(255, 255, 255, 0.9), inset 0 0 24px rgba(255, 255, 255, 1);
+    box-shadow:
+      0 0 26px rgba(255, 255, 255, 1),
+      0 0 52px rgba(255, 0, 60, 0.9);
   }
+}
+
+/* Floating hearts background (matches other games) */
+@keyframes floatHeartsBg {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-900px) rotate(360deg); opacity: 0; }
+}
+
+.heart {
+  position: fixed;
+  bottom: -40px;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  transform: rotate(45deg);
+  border-radius: 0;
+  animation: floatHeartsBg linear infinite;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
 }
 
 .basket-wrap {

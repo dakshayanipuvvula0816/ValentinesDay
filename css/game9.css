@@ -7,7 +7,7 @@
 body {
   height: 100vh;
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Great Vibes', cursive;
   color: white;
 }
 
@@ -64,17 +64,19 @@ h1 {
   height: 70px;
   cursor: pointer;
   clip-path: path("M35 60 C-5 30 15 5 35 20 C55 5 75 30 35 60 Z");
-  background: linear-gradient(135deg, #ffffff, #ffe6f0, #ffffff);
+  background: linear-gradient(145deg, #ff8fab, #ff4d6d);
   box-shadow:
-    0 0 10px rgba(255,255,255,0.9),
-    0 0 25px rgba(255,182,193,0.8);
+    0 0 12px rgba(255,128,171,0.9),
+    0 0 28px rgba(255,105,180,0.9);
   transition: transform 0.4s, background 0.4s;
 }
 
 /* Clicked heart */
 .heart.active {
-  background: linear-gradient(135deg, #ff5f9e, #ff2f6d);
-  box-shadow: 0 0 25px rgba(255,80,140,1);
+  background: linear-gradient(145deg, #ff477e, #c9184a);
+  box-shadow:
+    0 0 25px rgba(255,80,140,1),
+    0 0 40px rgba(255,182,193,0.9);
   transform: scale(1.1);
 }
 
@@ -97,4 +99,68 @@ h1 {
 .reason-box p {
   font-size: 20px;
   line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Shared restart/back buttons and centered win message (if used later) */
+.back {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  font-size: 22px;
+  color: #ffd6e8;
+  text-decoration: none;
+  z-index: 20;
+  font-family: 'Great Vibes', cursive;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.back:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.restart {
+  position: fixed;
+  bottom: 20px;
+  left: 25px;
+  font-size: 22px;
+  padding: 10px 24px;
+  font-family: 'Great Vibes', cursive;
+  color: #ffd6e8;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 214, 232, 0.6);
+  border-radius: 16px;
+  cursor: pointer;
+  z-index: 20;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.restart:hover {
+  background: rgba(255, 105, 135, 0.4);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.message {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #ffd6e8;
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.9);
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  max-width: 90%;
+}
+
+.message.show {
+  opacity: 1;
 }

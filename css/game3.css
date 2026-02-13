@@ -34,6 +34,17 @@ body {
   margin-top: 20px;
 }
 
+/* Bowler image on the right side */
+.bowler {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  width: 160px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  z-index: 4;
+}
+
 /* Ball – red cricket ball, will be moved by JS */
 .ball {
   position: absolute;
@@ -65,6 +76,21 @@ body {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+}
+
+/* Separate bat that can swing */
+.bat {
+  position: absolute;
+  right: -10px;
+  bottom: 20px;
+  width: 80px;
+  transform-origin: 10px 70%;
+  transform: rotate(-10deg);
+  transition: transform 0.15s ease-out;
+}
+
+.bat.swing {
+  transform: rotate(35deg);
 }
 
 /* Sweet spot – highlighted when it’s time to hit (for testing) */
@@ -227,4 +253,106 @@ body {
     opacity: 0;
     transform: translate(var(--cracker-dx), var(--cracker-dy));
   }
+}
+
+/* Floating hearts background */
+@keyframes floatHeartsBg {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-900px) rotate(360deg); opacity: 0; }
+}
+
+.heart {
+  position: fixed;
+  bottom: -40px;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  transform: rotate(45deg);
+  border-radius: 0;
+  animation: floatHeartsBg linear infinite;
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
+}
+
+/* Shared restart & back buttons and centered messages */
+.back {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  font-size: 22px;
+  color: #ffd6e8;
+  text-decoration: none;
+  z-index: 20;
+  font-family: 'Great Vibes', cursive;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.back:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.restart {
+  position: fixed;
+  bottom: 20px;
+  left: 25px;
+  font-size: 22px;
+  padding: 10px 24px;
+  font-family: 'Great Vibes', cursive;
+  color: #ffd6e8;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 214, 232, 0.6);
+  border-radius: 16px;
+  cursor: pointer;
+  z-index: 20;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.restart:hover {
+  background: rgba(255, 105, 135, 0.4);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.message {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #ffd6e8;
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.9);
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  max-width: 90%;
+}
+
+.message.show {
+  opacity: 1;
+  animation: popup-bounce 0.4s ease-out;
 }

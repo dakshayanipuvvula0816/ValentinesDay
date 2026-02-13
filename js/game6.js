@@ -15,6 +15,14 @@ let index = 0;
 let score = 0;
 let answered = false;
 
+// One audio per song: user should add audio/audio1.mp3 ... audio/audio10.mp3
+const audioFiles = songs.map((_, i) => {
+  const audio = new Audio(`audio/audio${i + 1}.mp3`);
+  audio.preload = "auto";
+  return audio;
+});
+let currentAudio = null;
+
 const clueEl = document.getElementById("clue");
 const revealEl = document.getElementById("reveal");
 const progressEl = document.getElementById("progress");
@@ -31,12 +39,34 @@ function loadSong() {
 
 function knowSong() {
   if (answered) return;
+
+   // Play the corresponding song when user knows it
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  const audio = audioFiles[index];
+  currentAudio = audio;
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(() => {
+      // Ignore autoplay errors; user interaction already happened
+    });
+  }
+
   score++;
   revealAnswer();
 }
 
 function skipSong() {
   if (answered) return;
+
+  // Stop any playing audio when skipping
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
   revealAnswer();
 }
 
@@ -53,6 +83,10 @@ function nextSong() {
   if (index < songs.length) {
     loadSong();
   } else {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
     showResult();
   }
 }
@@ -76,3 +110,9 @@ function showResult() {
 }
 
 loadSong();
+
+// Restart button
+const restartBtn = document.getElementById("restartBtn");
+if (restartBtn) {
+  restartBtn.addEventListener("click", () => window.location.reload());
+}

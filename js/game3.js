@@ -1,6 +1,7 @@
 (function () {
   const ball = document.getElementById("ball");
   const batsmanWrap = document.getElementById("batsmanWrap");
+  const bat = document.getElementById("bat");
   const sweetSpot = document.getElementById("sweetSpot");
   const scorePopup = document.getElementById("scorePopup");
   const scoreEl = document.getElementById("score");
@@ -148,9 +149,23 @@
     isHittable = false;
     batsmanWrap.classList.remove("hittable");
 
+    // Swing the bat visually
+    if (bat) {
+      bat.classList.add("swing");
+      setTimeout(() => bat.classList.remove("swing"), 250);
+    }
+
     const run = Math.random() > 0.5 ? 6 : 4;
     registerBall(run);
   });
 
   bowlBall();
+
+  // Restart button (reloads the over)
+  const restartBtn = document.getElementById("restartBtn");
+  if (restartBtn) {
+    restartBtn.addEventListener("click", function () {
+      window.location.reload();
+    });
+  }
 })();

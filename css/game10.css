@@ -30,6 +30,13 @@ h1 {
 }
 
 /* Wheel */
+.wheel-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
 .wheel-wrapper {
   position: relative;
   width: 320px;
@@ -120,10 +127,13 @@ h1 {
 
 /* Result */
 #result {
-  margin-top: 20px;
   font-size: 26px;
-  min-height: 40px;
+  min-width: 220px;
+  min-height: 60px;
+  text-align: left;
   text-shadow: 0 0 10px rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
 }
 
 .back {
@@ -168,3 +178,66 @@ h1 {
 
 .heart::before { top: -9px; left: 0; }
 .heart::after { left: 9px; top: 0; }
+
+/* Shared restart/back buttons and centered message style (if needed) */
+.back {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  font-size: 22px;
+  color: #ffd6e8;
+  text-decoration: none;
+  z-index: 20;
+  font-family: 'Great Vibes', cursive;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.back:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.restart {
+  position: fixed;
+  bottom: 20px;
+  left: 25px;
+  font-size: 22px;
+  padding: 10px 24px;
+  font-family: 'Great Vibes', cursive;
+  color: #ffd6e8;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 214, 232, 0.6);
+  border-radius: 16px;
+  cursor: pointer;
+  z-index: 20;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+.restart:hover {
+  background: rgba(255, 105, 135, 0.4);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.message {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #ffd6e8;
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.9);
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  max-width: 90%;
+}
+
+.message.show {
+  opacity: 1;
+}

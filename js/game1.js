@@ -1,96 +1,19 @@
 const puzzles = document.querySelectorAll(".puzzle");
 let solvedCount = 0;
 
-/* Floating hearts */
+/* Floating hearts (emoji stream in the background) */
 const heartBox = document.querySelector(".hearts");
-for (let i = 0; i < 30; i++) {
-  const heart = document.createElement("span");
-  heart.textContent = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 8 + Math.random() * 8 + "s";
-  heartBox.appendChild(heart);
-}
-
-puzzles.forEach(puzzle => {
-  const img = puzzle.dataset.img;
-  const size = 4;
-
-  const board = document.createElement("div");
-  board.className = "board";
-
-  const tray = document.createElement("div");
-  tray.className = "tray";
-
-  puzzle.append(board, tray);
-
-  let pieces = [];
-
-  for (let i = 0; i < size * size; i++) {
-    const slot = document.createElement("div");
-    slot.className = "slot";
-    slot.dataset.index = i;
-    board.appendChild(slot);
-
-    const piece = document.createElement("div");
-    piece.className = "piece";
-    piece.draggable = true;
-    piece.dataset.index = i;
-
-    const x = (i % size) * 63;
-    const y = Math.floor(i / size) * 63;
-
-    piece.style.backgroundImage = `url(${img})`;
-    piece.style.backgroundPosition = `-${x}px -${y}px`;
-
-    pieces.push(piece);
-  }
-
-  shuffle(pieces);
-  pieces.forEach(p => tray.appendChild(p));
-
-  let dragged = null;
-
-  document.addEventListener("dragstart", e => {
-    if (e.target.classList.contains("piece")) dragged = e.target;
-  });
-
-  document.addEventListener("dragover", e => e.preventDefault());
-
-  document.addEventListener("drop", e => {
-    if (!dragged) return;
-
-    if (e.target.classList.contains("slot")) {
-      e.target.innerHTML = "";
-      e.target.appendChild(dragged);
-      checkSolved();
-    }
-
-    if (e.target.classList.contains("tray")) {
-      e.target.appendChild(dragged);
-    }
-  });
-
-  
-function checkSolved() {
-  const slots = board.querySelectorAll(".slot");
-
-  const solved = [...slots].every(slot =>
-    slot.firstChild &&
-    slot.firstChild.dataset.index === slot.dataset.index
-  );
-
-  if (solved && !board.classList.contains("done")) {
-    board.classList.add("done");
-    solvedCount++;
-
-    if (solvedCount === 3) {
-      fireworks();
-      showWinPopup();
-    }
+if (heartBox) {
+  for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("span");
+    heart.textContent = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 8 + Math.random() * 8 + "s";
+    heartBox.appendChild(heart);
   }
 }
 
-
+/* Utility: shuffle an array in-place */
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -98,6 +21,7 @@ function shuffle(arr) {
   }
 }
 
+/* Celebration fireworks */
 function fireworks() {
   for (let burst = 0; burst < 3; burst++) {
     setTimeout(() => {
@@ -133,26 +57,103 @@ function fireworks() {
   }
 }
 
-
-// function showWinPopup() {
-//   const popup = document.getElementById("winPopup");
-//   if (!popup) {
-//     console.error("winPopup not found in DOM");
-//     return;
-//   }
-//   popup.style.display = "flex";
-// }
-  
+/* Centered win message popup */
 function showWinPopup() {
-  document.getElementById("winMessage").style.display = "block";
+  const el = document.getElementById("winMessage");
+  if (!el) return;
+  el.classList.add("show");
 }
 
+/* Build each puzzle board + tray */
+puzzles.forEach((puzzle) => {
+  const img = puzzle.dataset.img;
+  const size = 4;
 
-/* Buttons */
-function resetGame() {
-  location.reload();
-}
+  const board = document.createElement("div");
+  board.className = "board";
 
-function goBack() {
-  window.location.href = "index.html";
+  const tray = document.createElement("div");
+  tray.className = "tray";
+
+  puzzle.append(board, tray);
+
+  const pieces = [];
+
+  for (let i = 0; i < size * size; i++) {
+    const slot = document.createElement("div");
+    slot.className = "slot";
+    slot.dataset.index = i;
+    board.appendChild(slot);
+
+    const piece = document.createElement("div");
+    piece.className = "piece";
+    piece.draggable = true;
+    piece.dataset.index = i;
+
+    const x = (i % size) * 63;
+    const y = Math.floor(i / size) * 63;
+
+    piece.style.backgroundImage = `url(${img})`;
+    piece.style.backgroundPosition = `-${x}px -${y}px`;
+
+    pieces.push(piece);
+  }
+
+  shuffle(pieces);
+  pieces.forEach((p) => tray.appendChild(p));
+
+  let dragged = null;
+
+  board.addEventListener("dragstart", (e) => {
+    if (e.target.classList.contains("piece")) {
+      dragged = e.target;
+    }
+  });
+
+  tray.addEventListener("dragstart", (e) => {
+    if (e.target.classList.contains("piece")) {
+      dragged = e.target;
+    }
+  });
+
+  document.addEventListener("dragover", (e) => e.preventDefault());
+
+  document.addEventListener("drop", (e) => {
+    if (!dragged) return;
+
+    if (e.target.classList.contains("slot")) {
+      e.target.innerHTML = "";
+      e.target.appendChild(dragged);
+      checkSolved();
+    } else if (e.target.classList.contains("tray")) {
+      e.target.appendChild(dragged);
+    }
+  });
+
+  function checkSolved() {
+    const slots = board.querySelectorAll(".slot");
+
+    const solved = [...slots].every(
+      (slot) =>
+        slot.firstChild && slot.firstChild.dataset.index === slot.dataset.index
+    );
+
+    if (solved && !board.classList.contains("done")) {
+      board.classList.add("done");
+      solvedCount++;
+
+      if (solvedCount === puzzles.length) {
+        fireworks();
+        showWinPopup();
+      }
+    }
+  }
+});
+
+/* Restart button – same behavior across games */
+const restartBtn = document.getElementById("restartBtn");
+if (restartBtn) {
+  restartBtn.addEventListener("click", () => {
+    window.location.reload();
+  });
 }

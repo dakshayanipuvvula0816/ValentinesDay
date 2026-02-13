@@ -13,3 +13,9 @@ hearts.forEach((heart) => {
     reasonText.textContent = heart.dataset.text;
   });
 });
+
+// Restart button
+const restartBtn = document.getElementById("restartBtn");
+if (restartBtn) {
+  restartBtn.addEventListener("click", () => window.location.reload());
+}

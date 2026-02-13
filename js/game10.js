@@ -32,3 +32,9 @@ document.getElementById("spinBtn").addEventListener("click", () => {
     result.innerHTML = `❤️ ${actions[slice]}`;
   }, 4000);
 });
+
+// Restart button
+const restartBtn = document.getElementById("restartBtn");
+if (restartBtn) {
+  restartBtn.addEventListener("click", () => window.location.reload());
+}

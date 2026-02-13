@@ -81,14 +81,67 @@ function selectAnswer(index) {
 }
 
 function submitQuiz() {
+  let text = "";
   if (score === 10) {
-    result.innerText = "💖 Perfect! You know us by heart 💍";
+    text = "💖 Perfect! You know us by heart 💍";
   } else if (score >= 8) {
-    result.innerText = "🥰 Amazing! Love is strong between us 💕";
+    text = "🥰 Amazing! Love is strong between us 💕";
   } else {
-    result.innerText = "😜 Hmm… we need more dates together!";
+    text = "😜 Hmm… we need more dates together!";
   }
+  result.innerText = text;
   submitBtn.style.display = "none";
+  showFinalMessage(text);
 }
 
 loadQuestion();
+
+// Show centered message + confetti for the final result
+function showFinalMessage(text) {
+  const msgEl = document.getElementById("winMessage");
+  if (!msgEl) return;
+  msgEl.textContent = text;
+  msgEl.classList.add("show");
+  launchConfetti();
+}
+
+function launchConfetti() {
+  const colors = ["#ff4d6d", "#ffb3c6", "#ffe5ec", "#ffd6e8", "#fff"];
+  const count = 160;
+
+  for (let i = 0; i < count; i++) {
+    const conf = document.createElement("div");
+    conf.style.position = "fixed";
+    conf.style.width = "8px";
+    conf.style.height = "14px";
+    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    conf.style.left = Math.random() * 100 + "vw";
+    conf.style.top = "-20px";
+    conf.style.opacity = "0.9";
+    conf.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+    conf.style.zIndex = "9999";
+    document.body.appendChild(conf);
+
+    const fallDistance = 120 + Math.random() * 40;
+    const fallSide = (Math.random() - 0.5) * 80;
+
+    conf.animate(
+      [
+        { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+        {
+          transform: `translate(${fallSide}px, ${fallDistance}vh) rotate(360deg)`,
+          opacity: 0
+        }
+      ],
+      { duration: 1800 + Math.random() * 600, easing: "ease-out" }
+    );
+
+    setTimeout(() => conf.remove(), 2500);
+  }
+}
+
+// Restart button
+const restartBtn = document.getElementById("restartBtn");
+if (restartBtn) {
+  restartBtn.addEventListener("click", () => window.location.reload());
+}

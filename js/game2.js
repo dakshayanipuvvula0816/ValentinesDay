@@ -25,7 +25,7 @@
     heartsSpawned++;
 
     const rect = getPlayAreaRect();
-    const margin = 70;  // space from left & right
+    const margin = 100;  // keep hearts away from extreme edges
     const maxLeft = Math.max(0, rect.width - heartSize - margin * 2);
     const left = margin + Math.random() * maxLeft;
 
