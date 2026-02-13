@@ -1,14 +1,14 @@
 const songs = [
-  { clue: "🎵 'Cause all of me loves all of you", answer: "All of Me – John Legend" },
-  { clue: "🎶 I found a love, for me", answer: "Perfect – Ed Sheeran" },
-  { clue: "💖 You are my fire, the one desire", answer: "I Want It That Way – BSB" },
-  { clue: "🎼 We were both young when I first saw you", answer: "Love Story – Taylor Swift" },
-  { clue: "🎧 Take my hand, take my whole life too", answer: "All of Me – John Legend" },
+  { clue: "🎵 I am under the moonlight, but it is very warm when I think about you", answer: "Em sandeham ledu" },
+  { clue: "🎶 For someone you seem like a dream, For someone you seem like a flowing breeze", answer: "Te-Amo" },
+  { clue: "💖 Don’t know why l feel l got wings today only… Strangely I’m touching the sky", answer: "Yemito Ivala" },
+  { clue: "🎼 The heart is running,It has found a boon", answer: "Urike Urike" },
+  { clue: "🎧 Today I was born again", answer: "Kannula munde" },
   { clue: "💞 Darling, you look perfect tonight", answer: "Perfect – Ed Sheeran" },
   { clue: "🎵 It's you, it's you, it's all for you", answer: "Video Games – Lana Del Rey" },
-  { clue: "🎶 Can I go where you go?", answer: "Lover – Taylor Swift" },
-  { clue: "💖 You make me feel like I'm living a teenage dream", answer: "Teenage Dream – Katy Perry" },
-  { clue: "🎧 I could stay awake just to hear you breathing", answer: "I Don't Want to Miss a Thing – Aerosmith" }
+  { clue: "🎶 It feels like love, immersing me in imagination, while your smile falls on me like a raindrop", answer: "Cheliya" },
+  { clue: "💖 Darling,just kiss me slow", answer: "Perfect" },
+  { clue: "🎧 All of a sudden, Anger on the girl's nose", answer: "Adento kani" }
 ];
 
 let index = 0;
