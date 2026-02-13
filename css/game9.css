@@ -84,10 +84,13 @@ h1 {
 .reason-box {
   width: 380px;
   padding: 30px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(255,105,180,0.4);
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 214, 232, 0.6);
+  border-radius: 16px;
+  color: #ffd6e8;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(255, 182, 193, 0.25);
 }
 
 .reason-box h2 {
@@ -99,7 +102,7 @@ h1 {
 .reason-box p {
   font-size: 20px;
   line-height: 1.6;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Great Vibes', cursive;
 }
 
 /* Shared restart/back buttons and centered win message (if used later) */
