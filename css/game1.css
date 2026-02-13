@@ -107,7 +107,8 @@ body {
   pointer-events: auto;
   position: absolute;
   padding: 8px 20px;
-  font-family: 'Pacifico', cursive;
+  .bottom-nav a {
+  font-family: 'Great Vibes', cursive;
   font-size: 18px;
   color: #ffe6f0;
   text-decoration: none;
@@ -142,7 +143,8 @@ body {
 }
 
 .win-box {
-  font-family: 'Pacifico', cursive;
+  .bottom-nav a {
+  font-family: 'Great Vibes', cursive;
   font-size: 28px;
   color: #ffe6f0;
   padding: 30px 40px;
