@@ -1,4 +1,4 @@
-const correctOrder = ["1","2","3","4","5","6","7","8","9","10"];
+const correctOrder = ["Slam book.","Came in white shirt for telugu exam.","Caught by an uncle.","Baked a cake for oppa.","First airbnb.","Did lolol.","Went to kerala.","Went to trek.","Bike ride in Rain.","Came to family function."];
 const shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
 
 const left = document.getElementById("left");
