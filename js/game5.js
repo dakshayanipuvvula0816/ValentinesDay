@@ -162,10 +162,10 @@ function launchConfetti() {
           opacity: 0
         }
       ],
-      { duration: 1800 + Math.random() * 600, easing: "ease-out" }
+      { duration: 3200 + Math.random() * 800, easing: "ease-out" }
     );
 
-    setTimeout(() => conf.remove(), 2500);
+    setTimeout(() => conf.remove(), 4200);
   }
 }
 

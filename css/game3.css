@@ -356,3 +356,14 @@ body {
   opacity: 1;
   animation: popup-bounce 0.4s ease-out;
 }
+
+.message.win {
+  color: #fff;
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 0 25px gold, 0 0 50px rgba(255, 215, 0, 0.6);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+}

@@ -89,7 +89,7 @@ function submitQuiz() {
   } else {
     text = "😜 Hmm… we need more dates together Buu!";
   }
-  result.innerText = text;
+  result.style.display = "none";
   submitBtn.style.display = "none";
   showFinalMessage(text);
 }

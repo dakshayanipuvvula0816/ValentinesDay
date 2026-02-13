@@ -5,8 +5,9 @@ body {
   font-family: 'Great Vibes', cursive;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
+  padding-top: 40px;
 }
 
 body::before {
@@ -14,6 +15,7 @@ body::before {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.35);
+  z-index: 0;
 }
 
 .container {
@@ -22,19 +24,22 @@ body::before {
   text-align: center;
   color: white;
   max-width: 600px;
+  width: 100%;
 }
 
-h1 {
+h1.quiz-title {
   font-size: 60px;
   margin-bottom: 25px;
   text-shadow: 0 0 12px rgba(255,255,255,0.7);
+  position: relative;
 }
 
-#quiz-box {
+#quiz-box.quiz-box {
   background: rgba(255,77,109,0.25);
   padding: 25px;
   border-radius: 25px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  min-height: 200px;
 }
 
 #question {
@@ -180,5 +185,10 @@ h1 {
 
 .message.show {
   opacity: 1;
-  animation: float 0.4s ease-out;
+  animation: messagePop 0.4s ease-out;
+}
+
+@keyframes messagePop {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }

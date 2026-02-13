@@ -85,6 +85,42 @@
 
     if (balls < 18) {
       setTimeout(bowlBall, 900);
+    } else {
+      // Overs complete: confetti for a while, then show "HIT MAN"
+      triggerGameEndConfetti();
+      setTimeout(function () {
+        const winEl = document.getElementById("winMessage");
+        if (winEl) {
+          winEl.textContent = "HIT MAN";
+          winEl.classList.add("show");
+        }
+      }, 2500);
+    }
+  }
+
+  function triggerGameEndConfetti() {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight * 0.35;
+    const colors = ["#ff69b4", "#ff1493", "#ffd700", "#fff", "#c41e3a"];
+    const count = 48;
+    for (let i = 0; i < count; i++) {
+      setTimeout(function () {
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+        const dist = 80 + Math.random() * 120;
+        const dx = Math.cos(angle) * dist + (Math.random() - 0.5) * 40;
+        const dy = Math.sin(angle) * dist + (Math.random() - 0.5) * 40;
+        const el = document.createElement("div");
+        el.className = "cracker-particle" + (Math.random() > 0.5 ? " square" : "");
+        el.style.left = (centerX - 5) + "px";
+        el.style.top = (centerY - 5) + "px";
+        el.style.setProperty("--cracker-dx", dx + "px");
+        el.style.setProperty("--cracker-dy", dy + "px");
+        el.style.background = colors[Math.floor(Math.random() * colors.length)];
+        crackersContainer.appendChild(el);
+        setTimeout(function () {
+          if (el.parentNode) el.parentNode.removeChild(el);
+        }, 2200);
+      }, i * 60);
     }
   }
 

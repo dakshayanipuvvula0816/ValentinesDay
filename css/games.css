@@ -59,6 +59,11 @@ h1 {
   margin: 0 auto;
 }
 
+.squares-two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 500px;
+}
+
 .square {
   background-color: #ff4d6d;
   color: white;
@@ -81,25 +86,29 @@ h1 {
 }
 
 /* -----------------------------
-   CONTINUE BUTTON
+   CONTINUE BUTTON - same style as restart in games
 ---------------------------------*/
 .continue-btn {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  padding: 14px 40px;
+  right: 25px;
+  padding: 10px 24px;
   font-size: 22px;
-  border: none;
-  border-radius: 30px;
-  background-color: #ff4d6d;
-  color: white;
+  font-family: 'Great Vibes', cursive;
+  color: #ffd6e8;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 214, 232, 0.6);
+  border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 2;
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
 }
 
 .continue-btn:hover {
-  background-color: #d6336c;
+  background: rgba(255, 105, 135, 0.4);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
   transform: scale(1.05);
 }
 

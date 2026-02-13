@@ -102,6 +102,9 @@ function showResult() {
     message = "🎧 We need more love songs together 💖";
   }
 
+  var buttonsRow = document.getElementById("buttonsRow");
+  if (buttonsRow) buttonsRow.style.display = "none";
+
   clueEl.textContent = `Your Score: ${score}/10`;
   revealEl.textContent = message;
   revealEl.classList.remove("hidden");
