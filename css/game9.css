@@ -82,7 +82,7 @@ h1 {
 
 /* Reason box */
 .reason-box {
-  width: 380px;
+  width: 480px;
   padding: 30px;
   background: rgba(0, 0, 0, 0.35);
   border: 2px solid rgba(255, 214, 232, 0.6);
@@ -95,12 +95,12 @@ h1 {
 
 .reason-box h2 {
   font-family: 'Great Vibes', cursive;
-  font-size: 42px;
+  font-size: 35px;
   margin-bottom: 20px;
 }
 
 .reason-box p {
-  font-size: 40px;
+  font-size: 35px;
   line-height: 1.6;
   font-family: 'Great Vibes', cursive;
 }
