@@ -5,7 +5,7 @@
   const messageEl = document.getElementById("message");
   const restartBtn = document.getElementById("restartBtn");
 
-  const TOTAL_HEARTS = 2;
+  const TOTAL_HEARTS = 10;
   let score = 0;
   let heartsSpawned = 0;
   let gameOver = false;
