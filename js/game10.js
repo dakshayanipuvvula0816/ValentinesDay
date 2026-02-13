@@ -2,18 +2,18 @@ const wheel = document.getElementById("wheel");
 const result = document.getElementById("result");
 
 const actions = [
-  "💋 Kiss",
-  "🤳 Take a Selfie",
-  "💌 Sweet Words",
-  "🤗 Hug",
-  "😊 Compliment",
-  "🎵 Sing a Song",
-  "💃 Dance",
-  "🍫 Chocolate Treat",
-  "📝 Love Note",
-  "📸 Cute Photo",
-  "🕯️ Romantic Moment",
-  "🔥 Surprise Kiss"
+  "Impersonate a Bowler",
+  "Remove your shirt Hottie",
+  "Recreate first moment",
+  "Sing Romantic song for doro",
+  "Future Date Plan",
+  "Compliment Storm-30sec",
+  "Secret Fantasy",
+  "Future Promise",
+  "Love Letter in 2 Minutes",
+  "Put on a random romantic song and slow dance",
+  "Post a sweet story about me",
+  "Maintain eye contact for 30 seconds"
 ];
 
 let rotation = 0;
