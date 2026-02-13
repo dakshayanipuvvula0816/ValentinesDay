@@ -5,14 +5,14 @@
   const messageEl = document.getElementById("message");
   const restartBtn = document.getElementById("restartBtn");
 
-  const TOTAL_HEARTS = 30;
+  const TOTAL_HEARTS = 15;
   let score = 0;
   let heartsSpawned = 0;
   let gameOver = false;
   let basketLeft = 50;
-  const basketWidth = 120;
+  const basketWidth = 150;
   const heartSize = 36;
-  const fallSpeed = 2.2;
+  const fallSpeed = 2.0;
   const hearts = [];
   let spawnIntervalId = null;
 
