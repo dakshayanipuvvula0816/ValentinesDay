@@ -107,7 +107,7 @@
           scoreEl.textContent = score;
           if (score === TOTAL_HEARTS) {
             endGame(true);
-            showMessage("Thanks for keeping my heart safe.", true, true);
+            showMessage("Thanks for keeping my heart safe Srini.", true, true);
             return;
           }
         } else {
