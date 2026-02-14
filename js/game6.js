@@ -4,8 +4,8 @@ const songs = [
   { clue: "💖 Don’t know why l feel l got wings today only… Strangely I’m touching the sky", answer: "Yemito Ivala" },
   { clue: "🎼 The heart is running,It has found a boon", answer: "Urike Urike" },
   { clue: "🎧 Today I was born again", answer: "Kannula munde" },
-  { clue: "💞 Darling, you look perfect tonight", answer: "Perfect – Ed Sheeran" },
-  { clue: "🎵 It's you, it's you, it's all for you", answer: "Video Games – Lana Del Rey" },
+  { clue: "💞I could neither feel anything nor fall asleep,She neither leaves nor reaches out.", answer: "Oosupodu" },
+  { clue: "🎵 My breath is silently asking if you like me a little at least? ", answer: "Kola kalle ila" },
   { clue: "🎶 It feels like love, immersing me in imagination, while your smile falls on me like a raindrop", answer: "Cheliya" },
   { clue: "💖 Darling,just kiss me slow", answer: "Perfect" },
   { clue: "🎧 All of a sudden, Anger on the girl's nose", answer: "Adento kani" }
